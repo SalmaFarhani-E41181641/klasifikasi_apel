@@ -12,11 +12,13 @@ NIM  : E41181232
 
 !["AdminLTE Presentation"](https://adminlte.io/AdminLTE3.png "AdminLTE Presentation")
 
-Fitur : 
-  1. CRUD with Ajax
-  2. Datatable
-  3. Export dan Import ke Excel
-  4. Chart
-Hak Akses :
+Aplikasi Mengenai Klasifikasi Apel Malang: 
+  a. Green Smith 
+  b. Manalagi
+
+Link Trello:
+https://trello.com/b/vjIornoa/workshop-sc
+
+Hak Akses Aplikasi:
   1. Admin
   2. Penguji (Opsional)
