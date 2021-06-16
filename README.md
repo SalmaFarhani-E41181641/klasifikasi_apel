@@ -1,9 +1,5 @@
 # Workshop Semester 6 -> Klasifikasi-Apel-dengan-SVM
 
-## Cara Penggunaan
-Nama : Muhammad Arif A.F /
-NIM  : E41181232
-
 # Anggota kelompok 25:
   1. Nama : Muhammad Arif Annaili Fitrawan / NIM : E41181232
   2. Nama : Salma Farhani / NIM : E1181
