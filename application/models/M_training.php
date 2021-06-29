@@ -21,10 +21,11 @@ class M_training extends CI_Model
         return $data->result();
     }
 
-    function insert($kelas, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i)
+    function insert($kelas_asli, $kelas_klasifikasi, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i)
     {
         $data = array(
-            'kelas_training' => $kelas,
+            'Kelas_Asli' => $kelas_asli,
+            'Kelas_Klasifikasi' => $kelas_klasifikasi,
             'Mean_H' => $mean_h,
             'Mean_S' => $mean_s,
             'Mean_I' => $mean_i,
@@ -38,9 +39,10 @@ class M_training extends CI_Model
         $this->db->insert('data_training', $data);
     }
 
-    function update($id, $kelas, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i)
+    function update($id, $kelas_asli, $kelas_klasifikasi, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i)
     {
-        $this->db->set('kelas_training', $kelas);
+        $this->db->set('Kelas_Asli', $kelas_asli);
+        $this->db->set('Kelas_Klasifikasi', $kelas_klasifikasi);
         $this->db->set('Mean_H', $mean_h);
         $this->db->set('Mean_S', $mean_s);
         $this->db->set('Mean_I', $mean_i);
