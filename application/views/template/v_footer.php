@@ -329,6 +329,11 @@
                 icon: 'error',
                 title: 'Gagal upload!',
             });
+        } else if (flashData == 'gagal_export') {
+            Toast.fire({
+                icon: 'error',
+                title: 'Gagal export data, Data tidak boleh kosong!',
+            });
         } else if (flashData == 'duplikasi') {
             Toast.fire({
                 icon: 'warning',
@@ -342,7 +347,7 @@
         } else if (flashData == 'truncate') {
             Toast.fire({
                 icon: 'info',
-                title: 'Pengosongan tabel pengujian telah selesai!',
+                title: 'Pengosongan tabel telah selesai!',
             });
         }
     });

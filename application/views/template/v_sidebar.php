@@ -52,6 +52,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('manage') ?>" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Data User
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">Dataset</li>
                 <li class="nav-item">
                     <a href="<?= base_url('training') ?>" class="nav-link">
@@ -69,14 +77,6 @@
                         </p>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="<?= base_url('classified') ?>" class="nav-link">
-                        <i class="nav-icon fas fa-apple-alt"></i>
-                        <p>
-                            Kelas Klasifikasi
-                        </p>
-                    </a>
-                </li> -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-apple-alt"></i>

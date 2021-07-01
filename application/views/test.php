@@ -74,7 +74,7 @@
                             <tbody>
                                 <?php $no = 1; ?>
                                 <?php foreach ($testing as $p) :
-                                        $id = $p->Id_Testing;
+                                        $id = $p->id_testing;
                                         $kelas = $p->Kelas_Apel;
                                         $mean_h = $p->Mean_H;
                                         $mean_s = $p->Mean_S;
@@ -99,8 +99,8 @@
                                         <td><?= $kurtosis_s ?></td>
                                         <td><?= $kurtosis_i ?></td>
                                         <td class="card-tools text-center">
-                                            <button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#modal-detail"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-sm btn-danger m-2" data-toggle="modal" data-target="#modal-hapus"><i class="fas fa-trash"></i></button>
+                                            <button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#modalEdit<?= $id ?>"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger m-2" data-toggle="modal" data-target="#modalDelete<?= $id; ?>"><i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
                                     <?php $no++ ?>
@@ -142,7 +142,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title">Tambah Data Latih</h5>
+                <h5 class="modal-title">Tambah Data Uji</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -231,7 +231,7 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title">Tambah Data Latih</h5>
+                <h5 class="modal-title">Tambah Data Uji</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -258,7 +258,7 @@
 </div>
 
 <?php foreach ($testing as $t) {
-    $id = $t->Id_Testing;
+    $id = $t->id_testing;
     $kelas = $t->Kelas_Apel;
     $mean_h = $t->Mean_H;
     $mean_s = $t->Mean_S;
@@ -275,7 +275,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title">Edit Data Latih</h5>
+                    <h5 class="modal-title">Edit Data Uji</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -387,3 +387,29 @@
         </div>
     </div>
 <?php } ?>
+
+<!-- Modal Hapus Data -->
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Kosongkan Pengujian</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('Test/kosongkan'); ?>" method="POST">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img class="mt-2 mb-2" src="<?= base_url(); ?>assets/dist/icon/empty.svg" width=80% alt="delete-img">
+                        <h4 class="mb-4">Apakah anda yakin untuk mengkosongkan <?= $judul ?> ini?</h4>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                    <button type="submit" class="btn btn-danger">Iya <i class="fas fa-exclamation-triangle"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

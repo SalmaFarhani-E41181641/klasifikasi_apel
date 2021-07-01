@@ -113,44 +113,50 @@ class Test extends CI_Controller
         // include_once './assets/plugins/PhpSpreadsheet/Spreadsheet.php';
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $data = $this->m_testing->select_all();
-        $sheet = $spreadsheet->getActiveSheet();
+        $check = $this->db->get('data_training');
+        if ($check->num_rows() != 0) {
+            $sheet = $spreadsheet->getActiveSheet();
 
-        $rowCount = 1;
-        $sheet->setCellValue('A' . $rowCount, "Id");
-        $sheet->setCellValue('B' . $rowCount, "Kelas_Apel");
-        $sheet->setCellValue('C' . $rowCount, "Mean_H");
-        $sheet->setCellValue('D' . $rowCount, "Mean_S");
-        $sheet->setCellValue('E' . $rowCount, "Mean_I");
-        $sheet->setCellValue('F' . $rowCount, "Skewness_H");
-        $sheet->setCellValue('G' . $rowCount, "Skewness_S");
-        $sheet->setCellValue('H' . $rowCount, "Skewness_I");
-        $sheet->setCellValue('I' . $rowCount, "Kurtosis_H");
-        $sheet->setCellValue('J' . $rowCount, "Kurtosis_S");
-        $sheet->setCellValue('K' . $rowCount, "Kurtosis_I");
-        $rowCount++;
-
-        foreach ($data as $value) {
-            $sheet->setCellValue('A' . $rowCount, $value->Id);
-            $sheet->setCellValue('B' . $rowCount, $value->Kelas_Apel);
-            $sheet->setCellValue('C' . $rowCount, $value->Mean_H);
-            $sheet->setCellValue('D' . $rowCount, $value->Mean_S);
-            $sheet->setCellValue('E' . $rowCount, $value->Mean_I);
-            $sheet->setCellValue('F' . $rowCount, $value->Skewness_H);
-            $sheet->setCellValue('G' . $rowCount, $value->Skewness_S);
-            $sheet->setCellValue('H' . $rowCount, $value->Skewness_I);
-            $sheet->setCellValue('I' . $rowCount, $value->Kurtosis_H);
-            $sheet->setCellValue('J' . $rowCount, $value->Kurtosis_S);
-            $sheet->setCellValue('K' . $rowCount, $value->Kurtosis_I);
-            // $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id);
-            // $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->nama);
+            $rowCount = 1;
+            $sheet->setCellValue('A' . $rowCount, "id_testing");
+            $sheet->setCellValue('B' . $rowCount, "Kelas_Apel");
+            $sheet->setCellValue('C' . $rowCount, "Mean_H");
+            $sheet->setCellValue('D' . $rowCount, "Mean_S");
+            $sheet->setCellValue('E' . $rowCount, "Mean_I");
+            $sheet->setCellValue('F' . $rowCount, "Skewness_H");
+            $sheet->setCellValue('G' . $rowCount, "Skewness_S");
+            $sheet->setCellValue('H' . $rowCount, "Skewness_I");
+            $sheet->setCellValue('I' . $rowCount, "Kurtosis_H");
+            $sheet->setCellValue('J' . $rowCount, "Kurtosis_S");
+            $sheet->setCellValue('K' . $rowCount, "Kurtosis_I");
             $rowCount++;
+
+            foreach ($data as $value) {
+                $sheet->setCellValue('A' . $rowCount, $value->id_testing);
+                $sheet->setCellValue('B' . $rowCount, $value->Kelas_Apel);
+                $sheet->setCellValue('C' . $rowCount, $value->Mean_H);
+                $sheet->setCellValue('D' . $rowCount, $value->Mean_S);
+                $sheet->setCellValue('E' . $rowCount, $value->Mean_I);
+                $sheet->setCellValue('F' . $rowCount, $value->Skewness_H);
+                $sheet->setCellValue('G' . $rowCount, $value->Skewness_S);
+                $sheet->setCellValue('H' . $rowCount, $value->Skewness_I);
+                $sheet->setCellValue('I' . $rowCount, $value->Kurtosis_H);
+                $sheet->setCellValue('J' . $rowCount, $value->Kurtosis_S);
+                $sheet->setCellValue('K' . $rowCount, $value->Kurtosis_I);
+                // $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id);
+                // $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->nama);
+                $rowCount++;
+            }
+
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);;
+            $writer->save('./assets/excel/Data Testing.xlsx');
+
+            $this->load->helper('download');
+            force_download('./assets/excel/Data Testing.xlsx', NULL);
+        } else {
+            $this->session->set_flashdata('message', 'gagal_export');
+            redirect('training');
         }
-
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);;
-        $writer->save('./assets/excel/Data Testing.xlsx');
-
-        $this->load->helper('download');
-        force_download('./assets/excel/Data Testing.xlsx', NULL);
     }
 
     public function batch()
