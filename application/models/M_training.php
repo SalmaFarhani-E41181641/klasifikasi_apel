@@ -3,13 +3,13 @@ class M_training extends CI_Model
 {
     public function select_manalagi()
     {
-        $data = $this->db->query("SELECT * FROM data_training WHERE data_training.kelas_training = 'Manalagi' ");
+        $data = $this->db->query("SELECT * FROM data_training WHERE data_training.Kelas_Asli = 'Manalagi' ");
         return $data->result();
     }
 
     public function select_greensmith()
     {
-        $data = $this->db->query("SELECT * FROM data_training WHERE data_training.kelas_training = 'Green Smith' ");
+        $data = $this->db->query("SELECT * FROM data_training WHERE data_training.Kelas_Asli = 'Green Smith' ");
         return $data->result();
     }
 
@@ -24,8 +24,8 @@ class M_training extends CI_Model
     function insert($kelas_asli, $kelas_klasifikasi, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i)
     {
         $data = array(
-            'Kelas_Asli' => $kelas_asli,
-            'Kelas_Klasifikasi' => $kelas_klasifikasi,
+            'kelas_asli' => $kelas_asli,
+            'kelas_klasifikasi' => $kelas_klasifikasi,
             'Mean_H' => $mean_h,
             'Mean_S' => $mean_s,
             'Mean_I' => $mean_i,
@@ -52,7 +52,7 @@ class M_training extends CI_Model
         $this->db->set('Kurtosis_H', $kurtosis_h);
         $this->db->set('Kurtosis_S', $kurtosis_s);
         $this->db->set('Kurtosis_I', $kurtosis_i);
-        $this->db->where('Id', $id);
+        $this->db->where('id_training', $id);
         $this->db->update('data_training');
     }
 

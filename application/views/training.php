@@ -9,7 +9,7 @@
                     <div class="card-tools mt-2">
                         <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalImport">
                             <i class="fas fa-plus-circle"></i> Import Excel</button>
-                        <a href="<?= base_url('Test/export') ?>" class="btn btn-sm btn-info">
+                        <a href="<?= base_url('Training/export') ?>" class="btn btn-sm btn-info">
                             <i class="fas fa-upload"></i> Export Excel</a>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="test" class="table table-bordered table-striped">
+                        <table id="training" class="table table-bordered table-striped">
                             <thead>
                                 <?php if ($training == null) : ?>
                                     <!-- Jika Belum Terdapat data -->
@@ -75,7 +75,7 @@
                             <tbody>
                                 <?php $no = 1; ?>
                                 <?php foreach ($training as $m) :
-                                        $id = $m->Id_Training;
+                                        $id = $m->id_training;
                                         $kelas_asli = $m->Kelas_Asli;
                                         $kelas_klasifikasi = $m->Kelas_Klasifikasi;
                                         $mean_h = $m->Mean_H;
@@ -151,7 +151,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?php echo base_url() . 'Train/insert' ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() . 'Training/insert' ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="kelas">Kelas Data Latih</label>
@@ -246,7 +246,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?php echo base_url() . 'Test/batch' ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() . 'Training/batch' ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <p class="mb-2 rounded alert alert-dark"><i class="fas fa-info-circle"></i> Import digunakan untuk menambahkan lebih dari satu file berformat EXCEL (.xlx atau .xlsx).</p>
                     <div class="form-group mb-3">
@@ -268,7 +268,7 @@
 </div>
 
 <?php foreach ($training as $n) {
-    $id = $n->Id_Training;
+    $id = $n->id_training;
     $kelas_asli = $n->Kelas_Asli;
     $kelas_klasifikasi= $n->Kelas_Klasifikasi;
     $mean_h = $n->Mean_H;
@@ -282,7 +282,8 @@
     $kurtosis_i = $n->Kurtosis_I;
 ?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="modalEdit<?= $id ?>" tabindex="-1">
+    
+    <div class="modal fade" id="modalEdit<?= $id?>" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
@@ -291,7 +292,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?php echo base_url() . 'Test/update' ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url() . 'Training/update' ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="kelas">Kelas Data Latih</label>
@@ -369,7 +370,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id_kb" value="<?= $id; ?>" required>
+                        <input type="hidden" name="id_training" value="<?= $id; ?>" required>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
                     </div>
@@ -387,7 +388,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('Test/delete'); ?>" method="POST">
+                <form action="<?= base_url('Training/delete'); ?>" method="POST">
                     <div class="modal-body">
                         <div class="text-center">
                             <img class="mt-2 mb-2" src="<?= base_url(); ?>assets/dist/icon/hapus.svg" width=80% alt="delete-img">

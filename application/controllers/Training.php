@@ -94,8 +94,7 @@ class Training extends CI_Controller
             $kurtosis_h = htmlspecialchars($this->input->post('kurtosis_h', TRUE), ENT_QUOTES);
             $kurtosis_s = htmlspecialchars($this->input->post('kurtosis_s', TRUE), ENT_QUOTES);
             $kurtosis_i = htmlspecialchars($this->input->post('kurtosis_i', TRUE), ENT_QUOTES);
-            $this->m_training->update($id, $kelas, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i);
-            // $this->kebijakan_model->update($id, $name, $link, $isi);
+            $this->m_training->update($id, $kelas_asli, $kelas_klasifikasi, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i);
             $this->session->set_flashdata('message', 'edit');
             redirect('training');
         }
@@ -112,15 +111,13 @@ class Training extends CI_Controller
     public function export()
     {
         error_reporting(E_ALL);
-        require 'vendor/autoload.php';
-        // include_once './assets/plugins/PhpSpreadsheet/Writer/Xlsx.php';
-        // include_once './assets/plugins/PhpSpreadsheet/Spreadsheet.php';
+        require '/vendor/autoload.php';
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $data = $this->m_training->select_all();
         $sheet = $spreadsheet->getActiveSheet();
 
         $rowCount = 1;
-        $sheet->setCellValue('A' . $rowCount, "Id");
+        $sheet->setCellValue('A' . $rowCount, "id_training");
         $sheet->setCellValue('B' . $rowCount, "Kelas_Asli");
         $sheet->setCellValue('C' . $rowCount, "Kelas_Klasifikasi");
         $sheet->setCellValue('D' . $rowCount, "Mean_H");
@@ -135,7 +132,7 @@ class Training extends CI_Controller
         $rowCount++;
 
         foreach ($data as $value) {
-            $sheet->setCellValue('A' . $rowCount, $value->Id);
+            $sheet->setCellValue('A' . $rowCount, $value->id_training);
             $sheet->setCellValue('B' . $rowCount, $value->Kelas_Apel);
             $sheet->setCellValue('C' . $rowCount, $value->Kelas_Klasifikasi);
             $sheet->setCellValue('D' . $rowCount, $value->Mean_H);
@@ -147,8 +144,6 @@ class Training extends CI_Controller
             $sheet->setCellValue('J' . $rowCount, $value->Kurtosis_H);
             $sheet->setCellValue('K' . $rowCount, $value->Kurtosis_S);
             $sheet->setCellValue('L' . $rowCount, $value->Kurtosis_I);
-            // $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id);
-            // $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->nama);
             $rowCount++;
         }
 
@@ -173,7 +168,6 @@ class Training extends CI_Controller
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('excel')) {
-                // $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('message', 'gagal_upload');
                 redirect('training');
             } else {
@@ -187,7 +181,6 @@ class Training extends CI_Controller
                 include './assets/plugins/phpoffice/phpspreadsheet/src/PhpSpreadsheet/IOFactory.php';
 
                 $inputFileName = './assets/excel/' . $data['file_name'];
-                // $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 
                 $spreadsheet = \PhpOffice\Phpspreadsheet\IOFactory::load($inputFileName);
                 $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
@@ -195,11 +188,6 @@ class Training extends CI_Controller
                 $index = 0;
                 foreach ($sheetData as $key => $value) {
                     if ($key != 1) {
-                        // $id = md5(DATE('ymdhms') . rand());
-                        // $check = $this->m_training->check_nama($value['C']);
-
-                        // if ($check != 1) {
-                        // $resultData[$index]['Id'] = $value['A'];
                         $resultData[$index]['Kelas_Asli'] = ucwords($value['B']);
                         $resultData[$index]['Kelas_Klasifikasi'] = ucwords($value['C']);
                         $resultData[$index]['Mean_H'] = $value['D'];
@@ -211,7 +199,7 @@ class Training extends CI_Controller
                         $resultData[$index]['Kurtosis_H'] = $value['J'];
                         $resultData[$index]['Kurtosis_S'] = $value['K'];
                         $resultData[$index]['Kurtosis_I'] = $value['L'];
-                        // }
+                        
                     }
                     $index++;
                 }
