@@ -17,7 +17,7 @@ class Notfound extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
 
-        $data['judul'] = '404 Page Not Found';
-        $this->load->view('notfound', $data);
+        $data['judul'] = '403 Forbidden Page';
+        $this->load->view('forbidden', $data);
     }
 }

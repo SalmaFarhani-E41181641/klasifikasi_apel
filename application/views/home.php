@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dashboard</h1>
+                    <h1 class="m-0 text-dark">Beranda</h1>
                     <!-- <input type="email" name="em" id="em" value="<?= $this->session->userdata('email'); ?>"> -->
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6">
@@ -58,7 +58,11 @@
                         <div class="icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <a href="<?= base_url('training'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php if ($user['id_role'] != '1') {?>
+                            <a href="<?= base_url('#'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php }else {?>
+                            <a href="<?= base_url('training'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php }?>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -91,7 +95,11 @@
                         <div class="icon">
                             <i class="fas fa-vials"></i>
                         </div>
-                        <a href="<?= base_url('#'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php if ($user['id_role'] != '1') {?>
+                            <a href="<?= base_url('#'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php }else {?>
+                            <a href="<?= base_url('report'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php }?>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -107,13 +115,42 @@
                         <div class="icon">
                             <i class="fab fa-leanpub"></i>
                         </div>
-                        <a href="<?= base_url('#'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('#'); ?>" class="small-box-footer" data-toggle="modal" data-target="#DetailKelas">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <!-- ./col -->
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<!-- Modal Hapus Data -->
+<div class="modal fade" id="DetailKelas">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Kelas Klasifikasi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="text-center">
+                    <?php foreach ($detail as $d ) {?>
+                        <div class="col-md-6 float-left bg-<?php if ($d['Kelas_Apel'] == 'Manalagi') {
+                            echo 'warning';
+                        }else {
+                            echo 'teal';
+                        }?>">
+                        <i class="fas fa-apple-alt mt-4 mb-2"></i>
+                        <h4 class="mt-2 mb-4"><?= $d['Kelas_Apel']?></h4>
+                    </div>
+                    <?php }?>
+                </div>
+                <small class="text-success text-center">Jumlah Kelas klasifikasi berdasarkan data latih berjumlah ( <b><?= count($detail);?></b> )</small>
+            </div>
+        </div>
+    </div>
+</div>
+

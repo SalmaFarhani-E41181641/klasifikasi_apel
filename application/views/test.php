@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Home'); ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Home'); ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -88,16 +88,20 @@
                                 ?>
                                     <tr>
                                         <td class="text-center" width="100px"><?= $no; ?></td>
-                                        <td><?= $kelas ?></td>
-                                        <td><?= $mean_h ?></td>
-                                        <td><?= $mean_s ?></td>
-                                        <td><?= $mean_i ?></td>
-                                        <td><?= $skewness_h ?></td>
-                                        <td><?= $skewness_s ?></td>
-                                        <td><?= $skewness_i ?></td>
-                                        <td><?= $kurtosis_h ?></td>
-                                        <td><?= $kurtosis_s ?></td>
-                                        <td><?= $kurtosis_i ?></td>
+                                        <td class="text-center bg-<?php if ($kelas == 'Manalagi') {
+                                                                        echo 'warning';
+                                                                    } else {
+                                                                        echo 'info';
+                                                                    } ?>"><b><?= $kelas ?></b></td>
+                                        <td><?= number_format($mean_h, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($mean_s, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($mean_i, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($skewness_h, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($skewness_s, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($skewness_i, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($kurtosis_h, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($kurtosis_s, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($kurtosis_i, 3, '.', '.'); ?></td>
                                         <td class="card-tools text-center">
                                             <button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#modalEdit<?= $id ?>"><i class="fas fa-edit"></i></button>
                                             <button class="btn btn-sm btn-danger m-2" data-toggle="modal" data-target="#modalDelete<?= $id; ?>"><i class="fas fa-trash"></i></button>
@@ -365,7 +369,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h4 class="modal-title">Hapus Data</h4>
+                    <h4 class="modal-title">Kelas Klasifikasi</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -387,29 +391,3 @@
         </div>
     </div>
 <?php } ?>
-
-<!-- Modal Hapus Data -->
-<div class="modal fade" id="modalDelete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h4 class="modal-title">Kosongkan Pengujian</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('Test/kosongkan'); ?>" method="POST">
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img class="mt-2 mb-2" src="<?= base_url(); ?>assets/dist/icon/empty.svg" width=80% alt="delete-img">
-                        <h4 class="mb-4">Apakah anda yakin untuk mengkosongkan <?= $judul ?> ini?</h4>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                    <button type="submit" class="btn btn-danger">Iya <i class="fas fa-exclamation-triangle"></i></button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Guide extends CI_Controller
+class Contact extends CI_Controller
 {
     public function __construct()
     {
@@ -17,16 +17,11 @@ class Guide extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
 
-        $data['judul'] = "Panduan";
+        $data['judul'] = "Kontak";
         $this->load->view('template/v_header', $data);
         $this->load->view('template/v_navbar');
         $this->load->view('template/v_sidebar', $data);
-        $this->load->view('guide');
+        $this->load->view('contact');
         $this->load->view('template/v_footer');
-    }
-
-    public function dataset()
-    {
-        force_download('assets/dist/dataset/Testing.xlsx',NULL);
     }
 }

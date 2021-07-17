@@ -6,9 +6,7 @@ class About extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->session->userdata('email')) {
-            redirect('auth');
-        }
+        user_logged_in();
     }
 
     /** Menampilkan Form Login */
@@ -22,7 +20,7 @@ class About extends CI_Controller
         $data['judul'] = "Tentang SVM";
         $this->load->view('template/v_header', $data);
         $this->load->view('template/v_navbar');
-        $this->load->view('template/v_sidebar');
+        $this->load->view('template/v_sidebar', $data);
         $this->load->view('about');
         $this->load->view('template/v_footer');
     }

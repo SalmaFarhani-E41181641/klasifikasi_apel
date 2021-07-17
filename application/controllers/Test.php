@@ -7,9 +7,7 @@ class Test extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_testing', 'm_testing');
-        if (!$this->session->userdata('email')) {
-            redirect('auth');
-        }
+        user_logged_in();
     }
 
     public function index()
@@ -21,7 +19,7 @@ class Test extends CI_Controller
 
         $data['testing'] = $this->m_testing->select_all();
 
-        $data['judul'] = "Data Testing";
+        $data['judul'] = "Data Uji Kelompok";
         $this->load->view('template/v_header', $data);
         $this->load->view('template/v_navbar');
         $this->load->view('template/v_sidebar');

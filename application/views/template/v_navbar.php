@@ -3,7 +3,7 @@
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="<?= base_url(); ?>assets/dist/img/user/<?= $user['foto_user']; ?>" class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline"><?php if ($this->session->userdata('role') == 1) {
+                <span class="d-none d-md-inline"><?php if ($user['id_role'] == 1) {
                                                         echo "Administrator";
                                                     } else {
                                                         echo "User";
@@ -36,7 +36,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <a href="<?= base_url('profile'); ?>" class="btn btn-outline-primary">Profil</a>
-                    <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#modal-sm">Logout</button>
+                    <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#modal-sm">Keluar</button>
                 </li>
             </ul>
         </li>

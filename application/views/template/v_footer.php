@@ -172,7 +172,7 @@
         } else if (flashData == 'isReg') {
             Toast.fire({
                 icon: 'success',
-                title: 'Pendaftaran berhasil, silahkan cek email anda untuk mengaktivasi akun!',
+                title: 'Penambahan user baru telah selesai!',
             });
         } else if (flashData == 'Activate') {
             Toast.fire({
@@ -238,6 +238,11 @@
             Toast.fire({
                 icon: 'info',
                 title: 'Akun Telah Diaktifkan Kembali!',
+            });
+        } else if (flashData == 'Aktif') {
+            Toast.fire({
+                icon: 'info',
+                title: 'Akun Telah Diaktifkan!',
             });
         } else if (flashData == 'email/pswwrong') {
             Toast.fire({

@@ -6,14 +6,26 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1><?= $judul; ?></h1>
-                    <div class="card-tools mt-2">
-                        <a href="<?= base_url('Classified/classify') ?>" class="btn btn-sm btn-success">
-                            <i class="fas fa-redo"></i> Uji kembali</a>
+                    <?php
+                            /** Periksa apa ada data di tabel */
+                            $tabel = $this->db->query("SELECT pengujian.jenis_pengujian FROM pengujian")->num_rows();
+
+                            /** Ambil id terakhir */
+                            $getID = $this->db->query("SELECT pengujian.jenis_pengujian FROM pengujian ORDER BY jenis_pengujian DESC")->row_array();
+
+                            if ($tabel > 0) :
+                                $id_ps = autonumber($getID['jenis_pengujian'], 1, 8);
+                            else :
+                                $id_ps = 'U00000001';
+                            endif;
+                        ?>
+                        <div class="card-tools mt-2">
+                        <a href="<?= base_url('classify/'.$id_ps) ?>" style="text-decoration: none;" class="btn btn-primary ml-2 mr-2"><i class="fas fa-vials"></i> Hitung Kembali</a>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -70,17 +82,18 @@
                                 <?php endforeach; ?>
                             </tbody>
                             <?php
-                            $ambil = $this->db->query("SELECT * FROM pengujian")->result_array();
+                            $jenis_uji = $this->uri->segment('2');
+                            $ambil = $this->db->query("SELECT * FROM pengujian WHERE jenis_pengujian = '$jenis_uji'")->result_array();
                             $BN = $SL = $BR = $SH = $KS = 0;
 
                             foreach ($ambil as $d) {
-                                if ($d['Kelas_Asli'] == "Manalagi" && $d['Hasil'] == "-1") {
+                                if ($d['kelas_asli'] == "Manalagi" && $d['kelas_hasil'] == "-1") {
                                     $BN++;
-                                } elseif ($d['Kelas_Asli'] == "Manalagi" && $d['Hasil'] == "1") {
+                                } elseif ($d['kelas_asli'] == "Manalagi" && $d['kelas_hasil'] == "1") {
                                     $SL++;
-                                } elseif ($d['Kelas_Asli'] == "Green Smith" && $d['Hasil'] == "1") {
+                                } elseif ($d['kelas_asli'] == "Green Smith" && $d['kelas_hasil'] == "1") {
                                     $BR++;
-                                } elseif ($d['Kelas_Asli'] == "Green Smith" && $d['Hasil'] == "-1") {
+                                } elseif ($d['kelas_asli'] == "Green Smith" && $d['kelas_hasil'] == "-1") {
                                     $SH++;
                                 } else {
                                     $KS++;
@@ -88,13 +101,13 @@
                             }
 
                             foreach ($ambil as $s) {
-                                if ($s['Kelas_Asli'] == "-1" && $s['Hasil'] == "-1") {
+                                if ($s['kelas_asli'] == "-1" && $s['kelas_hasil'] == "-1") {
                                     $BN++; // Benar
-                                } elseif ($s['Kelas_Asli'] == "-1" && $s['Hasil'] == "1") {
+                                } elseif ($s['kelas_asli'] == "-1" && $s['kelas_hasil'] == "1") {
                                     $SL++; // Salah
-                                } elseif ($s['Kelas_Asli'] == "1" && $s['Hasil'] == "1") {
+                                } elseif ($s['kelas_asli'] == "1" && $s['kelas_hasil'] == "1") {
                                     $BR++; // Benar
-                                } elseif ($s['Kelas_Asli'] == "1" && $s['Hasil'] == "-1") {
+                                } elseif ($s['kelas_asli'] == "1" && $s['kelas_hasil'] == "-1") {
                                     $SH++; // Salah
                                 } else {
                                     $KS++; // Jika Kosong

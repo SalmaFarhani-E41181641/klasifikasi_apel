@@ -34,9 +34,14 @@ class M_user extends CI_Model
 
     public function jmlkelas()
     {
-        $jml = $this->db->query("SELECT COUNT( DISTINCT data_training.kelas_training) as kelas
+        $jml = $this->db->query("SELECT COUNT( DISTINCT data_training.Kelas_Apel) as kelas
         FROM data_training")->row_array();
         return $jml;
+    }
+
+    public function detailkelas(){
+        $kelas = $this->db->query("SELECT DISTINCT Kelas_Apel FROM data_training")->result_array();
+        return $kelas;
     }
 
     public function jmluji()
@@ -61,22 +66,25 @@ class M_user extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('pengujian');
-        $this->db->order_by('Id_Uji', 'DESC');
+        $this->db->order_by('id_uji', 'DESC');
         $this->db->limit(1);
         return $this->db->get();
     }
 
-    public function idtest()
+    function getId($id_ps)
     {
-        $this->db->select('Kelas_Apel');
-        $this->db->from('data_testing');
-        $this->db->order_by('Id_Testing', 'DESC');
-        // $this->db->limit(1);
-        return $this->db->get();
+        $this->db->select('*');
+        $this->db->from('pengujian');
+        $this->db->where('jenis_pengujian', $id_ps);
+        $query = $this->db->get()->result_array();
+        return $query;
     }
 
-    // function batch($data, $table)
-    // {
-    //     $this->db->insert_batch($table, $data);
-    // }
+    function getTest()
+    {
+        $this->db->select('*');
+        $this->db->from('data_testing');
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
 }

@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Home'); ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Home'); ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="training" class="table table-bordered table-striped">
+                        <table id="train" class="table table-bordered table-striped">
                             <thead>
                                 <?php if ($training == null) : ?>
                                     <!-- Jika Belum Terdapat data -->
@@ -57,8 +57,7 @@
                                 <?php else : ?>
                                     <tr class="text-center">
                                         <th>No</th>
-                                        <th>Kelas Asli</th>
-                                        <th>Kelas Klasifikasi</th>
+                                        <th>Kelas Apel</th>
                                         <th>Mean_H</th>
                                         <th>Mean_S</th>
                                         <th>Mean_I</th>
@@ -76,8 +75,7 @@
                                 <?php $no = 1; ?>
                                 <?php foreach ($training as $m) :
                                         $id = $m->id_training;
-                                        $kelas_asli = $m->Kelas_Asli;
-                                        $kelas_klasifikasi = $m->Kelas_Klasifikasi;
+                                        $kelas_apel = $m->Kelas_Apel;
                                         $mean_h = $m->Mean_H;
                                         $mean_s = $m->Mean_S;
                                         $mean_i = $m->Mean_I;
@@ -90,17 +88,20 @@
                                 ?>
                                     <tr>
                                         <td class="text-center" width="100px"><?= $no; ?></td>
-                                        <td><?= $kelas_asli ?></td>
-                                        <td><?= $kelas_klasifikasi ?></td>
-                                        <td><?= $mean_h ?></td>
-                                        <td><?= $mean_s ?></td>
-                                        <td><?= $mean_i ?></td>
-                                        <td><?= $skewness_h ?></td>
-                                        <td><?= $skewness_s ?></td>
-                                        <td><?= $skewness_i ?></td>
-                                        <td><?= $kurtosis_h ?></td>
-                                        <td><?= $kurtosis_s ?></td>
-                                        <td><?= $kurtosis_i ?></td>
+                                        <td class="text-center bg-<?php if ($kelas_apel == 'Manalagi') {
+                                                                        echo 'warning';
+                                                                    } else {
+                                                                        echo 'teal';
+                                                                    } ?>"><?= $kelas_apel ?></td>
+                                        <td><?= number_format($mean_h, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($mean_s, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($mean_i, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($skewness_h, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($skewness_s, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($skewness_i, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($kurtosis_h, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($kurtosis_s, 3, '.', '.'); ?></td>
+                                        <td><?= number_format($kurtosis_i, 3, '.', '.'); ?></td>
                                         <td class="card-tools text-center">
                                             <button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#modal-detail"><i class="fas fa-edit"></i></button>
                                             <button class="btn btn-sm btn-danger m-2" data-toggle="modal" data-target="#modal-hapus"><i class="fas fa-trash"></i></button>
@@ -112,8 +113,7 @@
                             <tfoot>
                                 <tr class="text-center">
                                     <th>No</th>
-                                    <th>Kelas Asli</th>
-                                    <th>Kelas Klasifikasi</th>
+                                    <th>Kelas Apel</th>
                                     <th>Mean_H</th>
                                     <th>Mean_S</th>
                                     <th>Mean_I</th>
@@ -154,16 +154,10 @@
             <form action="<?php echo base_url() . 'Training/insert' ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="kelas">Kelas Data Latih</label>
-                        <input type="text" id="kelas_asli" name="kelas_asli" class="form-control" placeholder="Kelas Data Latih">
+                        <label for="kelas">Kelas Data Sampel</label>
+                        <input type="text" id="kelas_apel" name="kelas_apel" class="form-control" placeholder="Kelas Data Latih">
                         <small class="form-text text-success">Contoh: <b>Manalagi</b> atau <b>Greensmith</b></small>
-                        <?= form_error('kelas', '<small class="text-danger col-md">', '</small>'); ?>
-                    </div>
-                    <div class="form-group">
-                        <label for="kelas">Kelas Data Klasifikasi</label>
-                        <input type="text" id="kelas_klasifikasi" name="kelas_klasifikasi" class="form-control" placeholder="Kelas Data Klasifikasi">
-                        <small class="form-text text-success">Contoh: <b>Manalagi</b> atau <b>Greensmith</b></small>
-                        <?= form_error('kelas', '<small class="text-danger col-md">', '</small>'); ?>
+                        <?= form_error('kelas_apel', '<small class="text-danger col-md">', '</small>'); ?>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -269,8 +263,7 @@
 
 <?php foreach ($training as $n) {
     $id = $n->id_training;
-    $kelas_asli = $n->Kelas_Asli;
-    $kelas_klasifikasi= $n->Kelas_Klasifikasi;
+    $kelas_apel = $n->Kelas_Apel;
     $mean_h = $n->Mean_H;
     $mean_s = $n->Mean_S;
     $mean_i = $n->Mean_I;
@@ -282,8 +275,8 @@
     $kurtosis_i = $n->Kurtosis_I;
 ?>
     <!-- Modal Edit -->
-    
-    <div class="modal fade" id="modalEdit<?= $id?>" tabindex="-1">
+
+    <div class="modal fade" id="modalEdit<?= $id ?>" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
@@ -295,16 +288,10 @@
                 <form action="<?php echo base_url() . 'Training/update' ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="kelas">Kelas Data Latih</label>
-                            <input type="text" id="kelas_asli" name="kelas_asli" value="<?= $kelas_asli ?>" class="form-control" placeholder="Kelas Data Latih">
+                            <label for="kelas">Kelas Data Sampel</label>
+                            <input type="text" id="kelas_apel" name="kelas_apel" value="<?= $kelas_apel ?>" class="form-control" placeholder="Kelas Data Latih">
                             <small class="form-text text-success">Contoh: <b>Manalagi</b> atau <b>Greensmith</b></small>
-                            <?= form_error('kelas', '<small class="text-danger col-md">', '</small>'); ?>
-                        </div>
-                        <div class="form-group">
-                            <label for="kelas">Kelas Data Klasifikasi</label>
-                            <input type="text" id="kelas_klasifikasi" name="kelas_klasifikasi" value="<?= $kelas_klasifikasi ?>" class="form-control" placeholder="Kelas Data Klasifikasi">
-                            <small class="form-text text-success">Contoh: <b>Manalagi</b> atau <b>Greensmith</b></small>
-                            <?= form_error('kelas', '<small class="text-danger col-md">', '</small>'); ?>
+                            <?= form_error('kelas_apel', '<small class="text-danger col-md">', '</small>'); ?>
                         </div>
                         <div class="row">
                             <div class="col-md-4">

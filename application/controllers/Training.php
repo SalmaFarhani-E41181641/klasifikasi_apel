@@ -7,9 +7,8 @@ class Training extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_training', 'm_training');
-        if (!$this->session->userdata('email')) {
-            redirect('auth');
-        }
+        user_logged_in();
+        cekuser();
     }
 
     public function index()
@@ -21,7 +20,7 @@ class Training extends CI_Controller
 
         $data['training'] = $this->m_training->select_all();
 
-        $data['judul'] = "Data Training";
+        $data['judul'] = "Data Latih";
         $this->load->view('template/v_header', $data);
         $this->load->view('template/v_navbar');
         $this->load->view('template/v_sidebar');
@@ -31,8 +30,7 @@ class Training extends CI_Controller
 
     public function insert()
     {
-        $this->form_validation->set_rules('kelas_asli', 'Kelas_asli', 'required');
-        $this->form_validation->set_rules('kelas_klasifikasi', 'Kelas_klasifikasi', 'required');
+        $this->form_validation->set_rules('kelas_apel', 'Kelas_Apel', 'required');
         $this->form_validation->set_rules('mean_h', 'Mean_h', 'required');
         $this->form_validation->set_rules('mean_s', 'Mean_s', 'required');
         $this->form_validation->set_rules('mean_i', 'Mean_i', 'required');
@@ -46,8 +44,7 @@ class Training extends CI_Controller
         if ($this->form_validation->run() == false) {
             redirect('training');
         } else {
-            $kelas_asli = htmlspecialchars($this->input->post('kelas_asli', TRUE), ENT_QUOTES);
-            $kelas_klasifikasi = htmlspecialchars($this->input->post('kelas_klasifikasi', TRUE), ENT_QUOTES);
+            $kelas_apel = htmlspecialchars($this->input->post('kelas_apel', TRUE), ENT_QUOTES);
             $mean_h = htmlspecialchars($this->input->post('mean_h', TRUE), ENT_QUOTES);
             $mean_s = htmlspecialchars($this->input->post('mean_s', TRUE), ENT_QUOTES);
             $mean_i = htmlspecialchars($this->input->post('mean_i', TRUE), ENT_QUOTES);
@@ -59,7 +56,7 @@ class Training extends CI_Controller
             $kurtosis_i = htmlspecialchars($this->input->post('kurtosis_i', TRUE), ENT_QUOTES);
             // $isi = $this->input->post('isi');
 
-            $this->m_training->insert($kelas_asli, $kelas_klasifikasi, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i);
+            $this->m_training->insert($kelas_apel, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i);
             $this->session->set_flashdata('message', 'save');
             redirect('training');
         }
@@ -67,8 +64,7 @@ class Training extends CI_Controller
 
     function update()
     {
-        $this->form_validation->set_rules('kelas_asli', 'Kelas_asli', 'required');
-        $this->form_validation->set_rules('kelas_klasifikasi', 'Kelas_klasifikasi', 'required');
+        $this->form_validation->set_rules('kelas_apel', 'Kelas_Apel', 'required');
         $this->form_validation->set_rules('mean_h', 'Mean_h', 'required');
         $this->form_validation->set_rules('mean_s', 'Mean_s', 'required');
         $this->form_validation->set_rules('mean_i', 'Mean_i', 'required');
@@ -83,8 +79,7 @@ class Training extends CI_Controller
             redirect('training');
         } else {
             $id = htmlspecialchars($this->input->post('id_training'));
-            $kelas_asli = htmlspecialchars($this->input->post('kelas_asli', TRUE), ENT_QUOTES);
-            $kelas_klasifikasi = htmlspecialchars($this->input->post('kelas_klasifikasi', TRUE), ENT_QUOTES);
+            $kelas_apel = htmlspecialchars($this->input->post('kelas_apel', TRUE), ENT_QUOTES);
             $mean_h = htmlspecialchars($this->input->post('mean_h', TRUE), ENT_QUOTES);
             $mean_s = htmlspecialchars($this->input->post('mean_s', TRUE), ENT_QUOTES);
             $mean_i = htmlspecialchars($this->input->post('mean_i', TRUE), ENT_QUOTES);
@@ -94,7 +89,7 @@ class Training extends CI_Controller
             $kurtosis_h = htmlspecialchars($this->input->post('kurtosis_h', TRUE), ENT_QUOTES);
             $kurtosis_s = htmlspecialchars($this->input->post('kurtosis_s', TRUE), ENT_QUOTES);
             $kurtosis_i = htmlspecialchars($this->input->post('kurtosis_i', TRUE), ENT_QUOTES);
-            $this->m_training->update($id, $kelas_asli, $kelas_klasifikasi, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i);
+            $this->m_training->update($id, $kelas_apel, $mean_h, $mean_s, $mean_i, $skewness_h, $skewness_s, $skewness_i, $kurtosis_h, $kurtosis_s, $kurtosis_i);
             $this->session->set_flashdata('message', 'edit');
             redirect('training');
         }
@@ -118,8 +113,7 @@ class Training extends CI_Controller
 
         $rowCount = 1;
         $sheet->setCellValue('A' . $rowCount, "id_training");
-        $sheet->setCellValue('B' . $rowCount, "Kelas_Asli");
-        $sheet->setCellValue('C' . $rowCount, "Kelas_Klasifikasi");
+        $sheet->setCellValue('B' . $rowCount, "Kelas_Apel");
         $sheet->setCellValue('D' . $rowCount, "Mean_H");
         $sheet->setCellValue('E' . $rowCount, "Mean_S");
         $sheet->setCellValue('F' . $rowCount, "Mean_I");
@@ -134,7 +128,6 @@ class Training extends CI_Controller
         foreach ($data as $value) {
             $sheet->setCellValue('A' . $rowCount, $value->id_training);
             $sheet->setCellValue('B' . $rowCount, $value->Kelas_Apel);
-            $sheet->setCellValue('C' . $rowCount, $value->Kelas_Klasifikasi);
             $sheet->setCellValue('D' . $rowCount, $value->Mean_H);
             $sheet->setCellValue('E' . $rowCount, $value->Mean_S);
             $sheet->setCellValue('F' . $rowCount, $value->Mean_I);
@@ -188,18 +181,16 @@ class Training extends CI_Controller
                 $index = 0;
                 foreach ($sheetData as $key => $value) {
                     if ($key != 1) {
-                        $resultData[$index]['Kelas_Asli'] = ucwords($value['B']);
-                        $resultData[$index]['Kelas_Klasifikasi'] = ucwords($value['C']);
-                        $resultData[$index]['Mean_H'] = $value['D'];
-                        $resultData[$index]['Mean_S'] = $value['E'];
-                        $resultData[$index]['Mean_I'] = $value['F'];
-                        $resultData[$index]['Skewness_H'] = $value['G'];
-                        $resultData[$index]['Skewness_S'] = $value['H'];
-                        $resultData[$index]['Skewness_I'] = $value['I'];
-                        $resultData[$index]['Kurtosis_H'] = $value['J'];
-                        $resultData[$index]['Kurtosis_S'] = $value['K'];
-                        $resultData[$index]['Kurtosis_I'] = $value['L'];
-                        
+                        $resultData[$index]['Kelas_Apel'] = ucwords($value['B']);
+                        $resultData[$index]['Mean_H'] = $value['C'];
+                        $resultData[$index]['Mean_S'] = $value['D'];
+                        $resultData[$index]['Mean_I'] = $value['E'];
+                        $resultData[$index]['Skewness_H'] = $value['F'];
+                        $resultData[$index]['Skewness_S'] = $value['G'];
+                        $resultData[$index]['Skewness_I'] = $value['H'];
+                        $resultData[$index]['Kurtosis_H'] = $value['I'];
+                        $resultData[$index]['Kurtosis_S'] = $value['J'];
+                        $resultData[$index]['Kurtosis_I'] = $value['K'];
                     }
                     $index++;
                 }

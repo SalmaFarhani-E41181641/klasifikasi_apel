@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url() ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -60,11 +60,11 @@
                             <tbody>
                                 <?php $no = 1; ?>
                                 <?php foreach ($report as $r) :
-                                        $id = $r->ID_ADM;
-                                        $urutan = $r->Jenis_Testing;
-                                        $asli = $r->Kelas_Asli;
-                                        $hasil = $r->Hasil;
-                                        $tanggal = $r->Tanggal_Uji;
+                                        $id = $r->id_user;
+                                        $urutan = $r->jenis_pengujian;
+                                        $asli = $r->kelas_asli;
+                                        $hasil = $r->kelas_hasil;
+                                        $tanggal = $r->tanggal_uji;
                                 ?>
                                     <tr class="text-center">
                                         <td class="text-center" width="100px"><?= $no; ?></td>

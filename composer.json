@@ -12,7 +12,7 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"phpoffice/phpspreadsheet": "^1.17",
+		"phpoffice/phpspreadsheet": "^1.18",
 		"camspiers/statistical-classifier": "^0.8.0"
 	},
 	"suggest": {

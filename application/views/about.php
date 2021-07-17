@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-3 col-sm-4 text-center">
-                <img src="<?= base_url(); ?>assets/dist/img/svm_image.jpg" width="600" alt="halo">
+                <img src="<?= base_url(); ?>assets/dist/img/svm_image.jpg" width="600" alt="gambar-svm">
                 <p class="mt-2 mb-2 rounded alert alert-secondary"><i class="fas fa-info-circle"></i> Mengenal algoritma dari support vector machine, berikut penjelasan singkatnya berdasarkan studi kasus <b>Apel Malang</b>.</p>
             </div>
             <div class="col-lg-12" id="accordion">

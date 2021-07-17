@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -38,31 +38,76 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-primary card-outline">
-                    <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
-                        <div class="card-header">
-                            <h4 class="card-title w-100">
-                                1. Data Training
-                            </h4>
-                        </div>
-                    </a>
-                    <div id="collapseOne" class="collapse" data-parent="#accordion">
-                        <div class="card-body">
-                            Masukkan data training sebelum memasukkan data testing. <a class="btn btn-info" href="<?= base_url('training') ?>"><i class="fas fa-external-link-alt"></i></a>
+                <?php if ($user['id_role'] == '1') {?>
+            
+                    <div class="card card-primary card-outline">
+                        <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
+                            <div class="card-header">
+                                <h4 class="card-title w-100">
+                                    1. Data Latih
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Masukkan data latih sebelum memasukkan data uji. <a class="btn btn-info" href="<?= base_url('training') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="card card-primary card-outline">
+                        <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
+                            <div class="card-header">
+                                <h4 class="card-title w-100">
+                                    2. Data Uji
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Setelah data latih telah dimasukkan, selanjutnya masukkan data uji. <a class="btn btn-info" href="<?= base_url('testing') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-primary card-outline">
+                        <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
+                            <div class="card-header">
+                                <h4 class="card-title w-100">
+                                    3. Kelas Klasifikasi
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Kelas klasifikasi adalah halaman untuk melakukan pengujian sistem, menguji klasifikasi hasil dari data latih dan data uji. <a class="btn btn-info" href="<?= base_url('classified') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-primary card-outline">
+                        <a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
+                            <div class="card-header">
+                                <h4 class="card-title w-100">
+                                    4. Hasil Laporan dan cetak laporan
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseFour" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Laporan merupakan hasil dari beberapa pengujian yang telah dilakukan, bisa dilakukan cetak dokumen. <a class="btn btn-info" href="<?= base_url('report') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                <?php }else {?>
                 <div class="card card-primary card-outline">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
                         <div class="card-header">
                             <h4 class="card-title w-100">
-                                2. Data Testing
+                                1. Data Uji
                             </h4>
                         </div>
                     </a>
                     <div id="collapseTwo" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                            Setelah data training telah dimasukkan, selanjutnya masukkan data testing. <a class="btn btn-info" href="<?= base_url('testing') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            Setelah data latih telah dimasukkan, selanjutnya masukkan data uji. <a class="btn btn-info" href="<?= base_url('testing') ?>"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
@@ -70,13 +115,18 @@
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
                         <div class="card-header">
                             <h4 class="card-title w-100">
-                                3. Kelas Klasifikasi
+                                2. Kelas Klasifikasi
                             </h4>
                         </div>
                     </a>
                     <div id="collapseThree" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                            Kelas klasifikasi adalah halaman untuk melakukan pengujian sistem, menguji klasifikasi hasil dari data training dan data testing. <a class="btn btn-info" href="<?= base_url('classified') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            Kelas klasifikasi adalah halaman untuk melakukan pengujian sistem, menguji klasifikasi hasil dari data latih dan data uji. 
+                            <ul>
+                                <li>
+                                    Uji Individu <a class="btn btn-info" href="<?= base_url('individu') ?>"><i class="fas fa-external-link-alt"></i></a> &  Uji Kelompok <a class="btn btn-info" href="<?= base_url('classified') ?>"><i class="fas fa-external-link-alt"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -84,16 +134,17 @@
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
                         <div class="card-header">
                             <h4 class="card-title w-100">
-                                4. Hasil Laporan dan cetak laporan
+                                4. Dataset Uji
                             </h4>
                         </div>
                     </a>
                     <div id="collapseFour" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                            Laporan merupakan hasil dari beberapa pengujian yang telah dilakukan, bisa dilakukan cetak dokumen. <a class="btn btn-info" href="<?= base_url('report') ?>"><i class="fas fa-external-link-alt"></i></a>
+                            Untuk melakukan pengujian, silahkan download dataset pada link berikut. <a class="btn btn-info" href="<?= base_url('dataset') ?>" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
+                <?php }?>
                 <div class="card card-primary card-outline">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseFive">
                         <div class="card-header">

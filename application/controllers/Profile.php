@@ -7,9 +7,7 @@ class Profile extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user', 'm_user');
-        if (!$this->session->userdata('email')) {
-            redirect('auth');
-        }
+        user_logged_in();
     }
 
     public function index()

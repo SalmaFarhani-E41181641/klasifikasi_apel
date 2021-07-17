@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -29,6 +29,7 @@
                             <h6 class="alert-heading">
                                 <b>Sistem Informasi Klasifikasi Apel Malang dengan menggunakan Metode SVM!</b>
                             </h6>
+                            <a href="<?= base_url('guide')?>" class="btn btn-info" style="text-decoration: none;"><i class="fas fa-download"></i> Download Dataset Uji</a>
                         </div>
                         <div class="row">
                             <div class="col-md-3">
@@ -87,9 +88,6 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="kelas" class="badge badge-primary">Form Data Uji</label>
-                                <!-- <input type="text" id="kelas" name="kelas" class="form-control" placeholder="Kelas Data">
-                                <small class="form-text text-success">Contoh: <b>Manalagi</b> atau <b>Greensmith</b></small>
-                                <?= form_error('kelas', '<small class="text-danger col-md">', '</small>'); ?> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-4">

@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -47,8 +47,21 @@
                     </p>
                     <hr>
                     <div class="bg-light text-center shadow rounded p-3 mb-4">
+                        <?php
+                            /** Periksa apa ada data di tabel */
+                            $tabel = $this->db->query("SELECT pengujian.jenis_pengujian FROM pengujian")->num_rows();
+
+                            /** Ambil id terakhir */
+                            $getID = $this->db->query("SELECT pengujian.jenis_pengujian FROM pengujian ORDER BY jenis_pengujian DESC")->row_array();
+
+                            if ($tabel > 0) :
+                                $id_ps = autonumber($getID['jenis_pengujian'], 1, 8);
+                            else :
+                                $id_ps = 'U00000001';
+                            endif;
+                        ?>
                         <div class="button container-fluid">
-                            <a href="<?= base_url('classify') ?>" style="text-decoration: none;" class="btn btn-primary ml-2 mr-2"><i class="fas fa-vials"></i> Hitung SVM</a>
+                            <a href="<?= base_url('classify/'.$id_ps) ?>" style="text-decoration: none;" class="btn btn-primary ml-2 mr-2"><i class="fas fa-vials"></i> Hitung SVM</a>
                             <!-- atau
                             <a href="<?= base_url('graph') ?>" class="btn btn-info ml-2 mr-2" style="text-decoration: none;"><i class="fas fa-chart-line"></i> Lihat Grafik</a> -->
                         </div>
