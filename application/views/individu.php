@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="<?=base_url()?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -29,7 +29,7 @@
                             <h6 class="alert-heading">
                                 <b>Sistem Informasi Klasifikasi Apel Malang dengan menggunakan Metode SVM!</b>
                             </h6>
-                            <a href="<?= base_url('guide')?>" class="btn btn-info" style="text-decoration: none;"><i class="fas fa-download"></i> Download Dataset Uji</a>
+                            <a href="<?= base_url('dataset')?>" class="btn btn-info" style="text-decoration: none;"><i class="fas fa-download"></i> Download Dataset Uji</a>
                         </div>
                         <div class="row">
                             <div class="col-md-3">
@@ -84,70 +84,70 @@
                         </div>
                     </div>
                     <!-- <hr> -->
-                    <form action="<?php echo base_url() . 'Classified/individu' ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url() . 'individu' ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="kelas" class="badge badge-primary">Form Data Uji</label>
+                                <label for="form-uji" class="badge badge-primary">Form Data Uji</label>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="mean_h">Nilai Mean_H</label>
+                                        <?= form_error('mean_h', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="mean_h" name="mean_h" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('mean_h', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="mean_s">Nilai Mean_S</label>
+                                        <?= form_error('mean_s', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="mean_s" name="mean_s" class="form-control" placeholder="Kelas Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('mean_s', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="mean_i">Nilai Mean_I</label>
+                                        <?= form_error('mean_i', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="mean_i" name="mean_i" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('mean_i', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="skewness_h">Nilai Skewness_H</label>
+                                        <?= form_error('skewness_h', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="skewness_h" name="skewness_h" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('skewness_h', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="skewness_s">Nilai Skewness_S</label>
+                                        <?= form_error('skewness_s', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="skewness_s" name="skewness_s" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('skewness_s', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="skewness_i">Nilai Skewness_I</label>
+                                        <?= form_error('skewness_i', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="skewness_i" name="skewness_i" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('skewness_i', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="kurtosis_h">Nilai Kurtosis_H</label>
+                                        <?= form_error('kurtosis_h', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="kurtosis_h" name="kurtosis_h" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('kurtosis_h', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="kurtosis_s">Nilai Kurtosis_S</label>
+                                        <?= form_error('kurtosis_s', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="kurtosis_s" name="kurtosis_s" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('kurtosis_s', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="kurtosis_i">Nilai Kurtosis_I</label>
+                                        <?= form_error('kurtosis_i', '<small class="text-danger col-md">', '</small>'); ?>
                                         <input type="text" id="kurtosis_i" name="kurtosis_i" class="form-control" placeholder="Nilai Data">
                                         <small class="form-text text-success">Isian: berupa Nilai Data</small>
-                                        <?= form_error('kurtosis_i', '<small class="text-danger col-md">', '</small>'); ?>
                                     </div>
                                 </div>
                             </div>

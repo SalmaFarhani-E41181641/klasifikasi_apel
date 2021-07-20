@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?php if ('classified' == $link || 'individu' == $link || 'classify' == $link) {
+                    <a href="#" class="nav-link <?php if ('classified' == $link || 'individu' == $link || 'classify' == $link || 'result_individu' == $link) {
                         echo 'active';
                     }?>">
                         <i class="nav-icon fas fa-apple-alt"></i>
@@ -114,7 +114,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('classified') ?>" class="nav-link <?php if ('classified' == $link || 'classify' == $link) {
+                            <a href="<?= base_url('classified') ?>" class="nav-link <?php if ('classified' == $link || 'classify' == $link || 'result_individu' == $link) {
                         echo 'active';
                     }?>">
                                 <i class="far fa-circle nav-icon"></i>

@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="<?=base_url();?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -173,7 +173,66 @@
                                 </li>
                                 <li>
                                     <p>2. Hitung data latih(<i>training</i>). Pada proses penghitungan, sistem akan menghitung hasil dari data training(<i>training</i>) dengan pengelompokan berdasarkan label.</p>
-                                    <img src="<?= base_url() ?>assets/dist/img/training.png" alt="">
+                                    <p>
+                                        <h3>Algoritma: Perhitungan dengan SMO</h3>
+                                        <ul>
+                                            <li>Input</li>
+                                            <ul>
+                                                <ul>
+                                                <li>C: regularization parameter</li>
+                                                <li>tol: numerical tolerance</li>
+                                                <li>max passes: max # of times to iterate over α’s without changing</li>
+                                                <li>(x(1), y(1)), . . . ,(x(m), y(m)): training data</li>
+                                                </ul>
+                                            </ul>
+                                            <li>Output</li>
+                                            <ul>
+                                                <ul>
+                                                <li>α ∈ Rm: Lagrange multipliers for solution</li>
+                                                <li>b ∈ R : threshold for solution</li>
+                                                </ul>
+                                                <ul>
+                                                    <li>Initialize αi = 0, ∀i, b = 0.</li>
+                                                    <li>Initialize passes = 0.</li>
+                                                    <li>
+                                                        <b>while</b> (passes < max passes)
+                                                    </li>
+                                                        <ul>
+                                                            <li>num changed alphas = 0.</li>
+                                                            <li>
+                                                                <b>for</b> i = 1, . . . m,
+                                                            </li>
+                                                                <ul>
+                                                                    <li>Calculate Ei = f(x(i)) − y(i) using (2).</li>
+                                                                    <li><b>if</b> ((y(i)Ei < −tol && αi < C) || (y(i)Ei > tol && αi > 0))</li>
+                                                                        <ul>
+                                                                            <li>Select j 6= i randomly.</li>
+                                                                            <li>Calculate Ej = f(x(j)) − y(j) using (2).</li>
+                                                                            <li>Save old α’s: α(old)i = αi, α(old)j = αj.</li>
+                                                                            <li>Compute L and H by (10) or (11).</li>
+                                                                            <li><b>if</b> (L == H)</li>
+                                                                            <ul><li>continue to next i.</li></ul>
+                                                                            <li><b>if</b> (η >= 0)</li>
+                                                                            <ul><li>continue to next i.</li></ul>
+                                                                            <li><b>if</b> (|αj − α(old)j| < 10−5)</li>
+                                                                            <ul><li>continue to next i.</li></ul>
+                                                                            <li>Determine value for αi using (16).</li>
+                                                                            <li>Compute b1 and b2 using (17) and (18) respectively.</li>
+                                                                            <li>Compute b by (19).</li>
+                                                                            <li>num changed alphas := num changed alphas + 1.</li>
+                                                                        </ul>
+                                                                    <li><b>end if</b></li>
+                                                                </ul>
+                                                            <li>
+                                                                <b>end for</b>
+                                                            </li>
+                                                        </ul>
+                                                    <li>
+                                                        <b>end while</b>
+                                                    </li>
+                                                </ul>
+                                            </ul>
+                                        </ul>
                                 </li>
                                 <li>
                                     <p>3. Setelah itu masuk ke fungsi prediksi, pada fungsi prediksi dibutuhkan sebuah data uji(<i>testing</i>). Data uji(<i>testing</i>) ini digunakan untuk tes data klasifikasi berdasarkan data latih(<i>training</i>). Data yang digunakan untuk perulangan dalam proses prediksi diambil dari

@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="<?=base_url()?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $judul; ?></li>
                     </ol>
                 </div>
@@ -78,7 +78,15 @@
                         </a>
                         <div id="collapseThree" class="collapse" data-parent="#accordion">
                             <div class="card-body">
-                                Kelas klasifikasi adalah halaman untuk melakukan pengujian sistem, menguji klasifikasi hasil dari data latih dan data uji. <a class="btn btn-info" href="<?= base_url('classified') ?>"><i class="fas fa-external-link-alt"></i></a>
+                                <ul>
+                                    <li>
+                                        Kelas klasifikasi adalah halaman untuk melakukan pengujian sistem, menguji klasifikasi hasil dari data latih dan data uji. <a class="btn-sm btn-info" href="<?= base_url('classified') ?>"><i class="fas fa-external-link-alt"></i></a>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        silahkan download dataset pada link berikut. <a class="btn-sm btn-info" href="<?= base_url('dataset') ?>" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

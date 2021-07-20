@@ -22,7 +22,6 @@ class Home extends CI_Controller
         $data['jumlah_kelas'] = $this->m_user->jmlkelas();
         $data['detail'] = $this->m_user->detailkelas();
         $data['jumlah_uji'] = $this->m_user->jmluji();
-        // $data['test'] = $this->m_user->getTest();
 
         $data['judul'] = "Dashboard";
         $this->load->view('template/v_header', $data);

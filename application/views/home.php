@@ -118,6 +118,18 @@
                         <a href="<?= base_url('#'); ?>" class="small-box-footer" data-toggle="modal" data-target="#DetailKelas">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                <div class="col">
+                    <?php 
+                    $train= $this->db->get('data_testing')->result_array();
+                    foreach ($train as $test) {
+                        // for ($i=0; $i <= $test; $i++) { 
+                            # code...
+                            $col = array($test['Mean_H'], $test['Mean_S'], $test['Mean_I'],$test['Skewness_H'],$test['Skewness_S'],$test['Skewness_I'],$test['Kurtosis_H'],$test['Kurtosis_S'],$test['Kurtosis_I']);
+                        // }
+                        // return $col;
+                    }
+                    ?>
+                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>

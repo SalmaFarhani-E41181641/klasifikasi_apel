@@ -66,6 +66,7 @@ $route['classified'] = 'Classified';
 $route['classify/(:any)'] = 'Classified/classify/$1';
 $route['graph'] = 'Classified/graph';
 $route['individu'] = 'Classified/individu';
+$route['result_individu'] = 'Classified/ujitunggal';
 $route['report'] = 'Report';
 $route['training'] = 'Training';
 $route['testing'] = 'Test';
