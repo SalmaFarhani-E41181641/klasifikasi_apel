@@ -38,73 +38,6 @@
                         </div>
                     </div>
                 </div>
-                <?php if ($user['id_role'] == '1') {?>
-            
-                    <div class="card card-primary card-outline">
-                        <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
-                            <div class="card-header">
-                                <h4 class="card-title w-100">
-                                    1. Data Latih
-                                </h4>
-                            </div>
-                        </a>
-                        <div id="collapseOne" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                Masukkan data latih sebelum memasukkan data uji. <a class="btn btn-info" href="<?= base_url('training') ?>"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-primary card-outline">
-                        <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
-                            <div class="card-header">
-                                <h4 class="card-title w-100">
-                                    2. Data Uji
-                                </h4>
-                            </div>
-                        </a>
-                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                Setelah data latih telah dimasukkan, selanjutnya masukkan data uji. <a class="btn btn-info" href="<?= base_url('testing') ?>"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-primary card-outline">
-                        <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
-                            <div class="card-header">
-                                <h4 class="card-title w-100">
-                                    3. Kelas Klasifikasi
-                                </h4>
-                            </div>
-                        </a>
-                        <div id="collapseThree" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <ul>
-                                    <li>
-                                        Kelas klasifikasi adalah halaman untuk melakukan pengujian sistem, menguji klasifikasi hasil dari data latih dan data uji. <a class="btn-sm btn-info" href="<?= base_url('classified') ?>"><i class="fas fa-external-link-alt"></i></a>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        silahkan download dataset pada link berikut. <a class="btn-sm btn-info" href="<?= base_url('dataset') ?>" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-primary card-outline">
-                        <a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
-                            <div class="card-header">
-                                <h4 class="card-title w-100">
-                                    4. Hasil Laporan dan cetak laporan
-                                </h4>
-                            </div>
-                        </a>
-                        <div id="collapseFour" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                Laporan merupakan hasil dari beberapa pengujian yang telah dilakukan, bisa dilakukan cetak dokumen. <a class="btn btn-info" href="<?= base_url('report') ?>"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                <?php }else {?>
                 <div class="card card-primary card-outline">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
                         <div class="card-header">
@@ -152,7 +85,6 @@
                         </div>
                     </div>
                 </div>
-                <?php }?>
                 <div class="card card-primary card-outline">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseFive">
                         <div class="card-header">

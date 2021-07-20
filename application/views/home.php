@@ -58,11 +58,7 @@
                         <div class="icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <?php if ($user['id_role'] != '1') {?>
-                            <a href="<?= base_url('#'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        <?php }else {?>
-                            <a href="<?= base_url('training'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        <?php }?>
+                        <a href="<?= base_url('training'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -95,11 +91,7 @@
                         <div class="icon">
                             <i class="fas fa-vials"></i>
                         </div>
-                        <?php if ($user['id_role'] != '1') {?>
-                            <a href="<?= base_url('#'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        <?php }else {?>
-                            <a href="<?= base_url('report'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        <?php }?>
+                        <a href="<?= base_url('report'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -119,12 +111,12 @@
                     </div>
                 </div>
                 <div class="col">
-                    <?php 
-                    $train= $this->db->get('data_testing')->result_array();
+                    <?php
+                    $train = $this->db->get('data_testing')->result_array();
                     foreach ($train as $test) {
                         // for ($i=0; $i <= $test; $i++) { 
-                            # code...
-                            $col = array($test['Mean_H'], $test['Mean_S'], $test['Mean_I'],$test['Skewness_H'],$test['Skewness_S'],$test['Skewness_I'],$test['Kurtosis_H'],$test['Kurtosis_S'],$test['Kurtosis_I']);
+                        # code...
+                        $col = array($test['Mean_H'], $test['Mean_S'], $test['Mean_I'], $test['Skewness_H'], $test['Skewness_S'], $test['Skewness_I'], $test['Kurtosis_H'], $test['Kurtosis_S'], $test['Kurtosis_I']);
                         // }
                         // return $col;
                     }
@@ -149,20 +141,19 @@
             </div>
             <div class="modal-body text-center">
                 <div class="text-center">
-                    <?php foreach ($detail as $d ) {?>
+                    <?php foreach ($detail as $d) { ?>
                         <div class="col-md-6 float-left bg-<?php if ($d['Kelas_Apel'] == 'Manalagi') {
-                            echo 'warning';
-                        }else {
-                            echo 'teal';
-                        }?>">
-                        <i class="fas fa-apple-alt mt-4 mb-2"></i>
-                        <h4 class="mt-2 mb-4"><?= $d['Kelas_Apel']?></h4>
-                    </div>
-                    <?php }?>
+                                                                echo 'warning';
+                                                            } else {
+                                                                echo 'teal';
+                                                            } ?>">
+                            <i class="fas fa-apple-alt mt-4 mb-2"></i>
+                            <h4 class="mt-2 mb-4"><?= $d['Kelas_Apel'] ?></h4>
+                        </div>
+                    <?php } ?>
                 </div>
-                <small class="text-success text-center">Jumlah Kelas klasifikasi berdasarkan data latih berjumlah ( <b><?= count($detail);?></b> )</small>
+                <small class="text-success text-center">Jumlah Kelas klasifikasi berdasarkan data latih berjumlah ( <b><?= count($detail); ?></b> )</small>
             </div>
         </div>
     </div>
 </div>
-

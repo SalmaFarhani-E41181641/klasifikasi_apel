@@ -31,7 +31,7 @@
 
         <!-- Sidebar Menu -->
         <?php
-            $link = $this->uri->segment(1);
+        $link = $this->uri->segment(1);
         ?>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -40,8 +40,8 @@
                 <li class="nav-header">Beranda</li>
                 <li class="nav-item">
                     <a href="<?= base_url(); ?>" class="nav-link <?php if ('home' == $link) {
-                        echo 'active';
-                    }?>">
+                                                                        echo 'active';
+                                                                    } ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Beranda
@@ -50,44 +50,39 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('guide') ?>" class="nav-link <?php if ('guide' == $link) {
-                        echo 'active';
-                    }?>">
+                                                                            echo 'active';
+                                                                        } ?>">
                         <i class="nav-icon fas fa-info"></i>
                         <p>
                             Panduan
                         </p>
                     </a>
                 </li>
-                <?php if ($user['id_role'] == 1) : ?>
-                    <li class="nav-item">
-                        <a href="<?= base_url('manage') ?>" class="nav-link <?php if ('manage' == $link) {
-                        echo 'active';
-                    }?>">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>
-                                Data User
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-header">Dataset</li>
-                    <li class="nav-item">
-                        <a href="<?= base_url('training') ?>" class="nav-link <?php if ('training' == $link) {
-                        echo 'active';
-                    }?>">
-                            <i class="nav-icon fas fa-server"></i>
-                            <p>
-                                Data Latih
-                            </p>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if ($user['id_role'] == 2) { ?>
-                    <li class="nav-header">Pengujian</li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a href="<?= base_url('manage') ?>" class="nav-link <?php if ('manage' == $link) {
+                                                                            echo 'active';
+                                                                        } ?>">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Data User
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">Dataset</li>
+                <li class="nav-item">
+                    <a href="<?= base_url('training') ?>" class="nav-link <?php if ('training' == $link) {
+                                                                                echo 'active';
+                                                                            } ?>">
+                        <i class="nav-icon fas fa-server"></i>
+                        <p>
+                            Data Latih
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="<?= base_url('testing') ?>" class="nav-link <?php if ('testing' == $link) {
-                        echo 'active';
-                    }?>">
+                                                                                echo 'active';
+                                                                            } ?>">
                         <i class="nav-icon fas fa-flask"></i>
                         <p>
                             Data Uji
@@ -96,8 +91,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link <?php if ('classified' == $link || 'individu' == $link || 'classify' == $link || 'result_individu' == $link) {
-                        echo 'active';
-                    }?>">
+                                                    echo 'active';
+                                                } ?>">
                         <i class="nav-icon fas fa-apple-alt"></i>
                         <p>
                             Kelas Klasifikasi
@@ -107,40 +102,38 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('individu') ?>" class="nav-link <?php if ('individu' == $link) {
-                        echo 'active';
-                    }?>">
+                                                                                        echo 'active';
+                                                                                    } ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Uji Individu</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('classified') ?>" class="nav-link <?php if ('classified' == $link || 'classify' == $link || 'result_individu' == $link) {
-                        echo 'active';
-                    }?>">
+                                                                                        echo 'active';
+                                                                                    } ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Uji Kelompok</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <?php if ($user['id_role'] == 1) : ?>
-                    <li class="nav-header">Laporan</li>
-                    <li class="nav-item">
-                        <a href="<?= base_url('report') ?>" class="nav-link <?php if ('report' == $link) {
-                        echo 'active';
-                    }?>">
-                            <i class="nav-icon fas fa-file"></i>
-                            <p>
-                                Laporan Pengujian
-                            </p>
-                        </a>
-                    </li>
-                <?php endif; ?>
+                <li class="nav-header">Laporan</li>
+                <li class="nav-item">
+                    <a href="<?= base_url('report') ?>" class="nav-link <?php if ('report' == $link) {
+                                                                            echo 'active';
+                                                                        } ?>">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                            Laporan Pengujian
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">Info</li>
                 <li class="nav-item ">
                     <a href="<?= base_url('about') ?>" class="nav-link <?php if ('about' == $link) {
-                        echo 'active';
-                    }?>">
+                                                                            echo 'active';
+                                                                        } ?>">
                         <i class="nav-icon fas fa-question-circle"></i>
                         <p>
                             Tentang SVM

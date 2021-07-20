@@ -66,7 +66,6 @@ class Manage extends CI_Controller
             'email' => $email,
             'password' => $password,
             'foto_user' => 'default.jpg',
-            'id_role' => 2,
             'status' => 1,
             'tanggal' => time()
         ];

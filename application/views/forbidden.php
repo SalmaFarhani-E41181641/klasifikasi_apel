@@ -32,9 +32,7 @@
                     <div class="error-actions mt-5">
                         <div class="row justify-content-center">
                             <div class="col-md-6 text-center">
-                                <?php if (!$this->session->userdata($user['id_role']) == 1) { ?>
-                                    <a href="<?= base_url('home'); ?>" class="btn btn-outline-primary"><i class="fas fa-tachometer-alt"></i></i> kembali ke dashboard</a>
-                                <?php } ?>
+                                <a href="<?= base_url('home'); ?>" class="btn btn-outline-primary"><i class="fas fa-tachometer-alt"></i></i> kembali ke dashboard</a>
                             </div>
                         </div>
                     </div>

@@ -22,7 +22,7 @@
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
-                <img src="<?= base_url('assets/dist/icon/not_found.svg'); ?>" alt="" class="img-rounded img-responsive img-fluid" width="400">
+                <img src="<?= base_url('assets/user/svg/undraw_not_found_60pq.svg'); ?>" alt="" class="img-rounded img-responsive img-fluid" width="400">
                 <div class="error-template">
                     <h1>404</h1>
                     <h2><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Halaman belum tersedia atau tidak ditemukan.</h2>

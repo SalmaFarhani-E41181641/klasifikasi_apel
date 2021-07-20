@@ -3,25 +3,15 @@
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="<?= base_url(); ?>assets/dist/img/user/<?= $user['foto_user']; ?>" class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline"><?php if ($user['id_role'] == 1) {
-                                                        echo "Administrator";
-                                                    } else {
-                                                        echo "User";
-                                                    } ?></span>
+                <span class="d-none d-md-inline">Administrator</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
                     <img src="<?= base_url(); ?>assets/dist/img/user/<?= $user['foto_user']; ?>" class="img-circle elevation-2" alt="User Image">
-                    <?php
-                    if ($user['id_role'] == 1) {
-                        $level = "<span title='admin' class='badge badge-warning'>Admin</span>";
-                    } else {
-                        $level = "<span title='user' class='badge badge-warning'>User</span>";
-                    }
-                    ?>
+
                     <p>
-                        <small><?= $level; ?></small>
+                        <small><span title="admin" class="badge badge-warning">Admin</span></small>
                         <?= $user['nama_user']; ?>
                     </p>
                     <!-- <small>

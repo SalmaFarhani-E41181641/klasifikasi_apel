@@ -15,6 +15,12 @@ class M_testing extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function insert_batch_user($data)
+    {
+        $this->db->insert_batch('data_testing_user', $data);
+        return $this->db->affected_rows();
+    }
+
     public function check_data($data)
     {
         $this->db->where('Mean_H', $data);
