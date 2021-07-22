@@ -25,6 +25,20 @@ class M_user extends CI_Model
         return $this->db->query('SELECT * FROM detail_pengujian_user join data_testing_user where detail_pengujian_user.id_testing= data_testing_user.id_testing and detail_pengujian_user.id_uji="'. $id.'"')->result();
     }
 
+    public function jmlBerhasil($id)
+    {
+        return $this->db->query('SELECT COUNT(data_testing_user.id_testing) as berhasil FROM data_testing_user join detail_pengujian_user WHERE Kelas_Apel=Kelas_Hasil and id_uji="'.$id.'"')->row_array();
+    }
+    public function jmlGagal($id)
+    {
+        return $this->db->query('SELECT COUNT(data_testing_user.id_testing) as gagal FROM data_testing_user join detail_pengujian_user WHERE Kelas_Apel!=Kelas_Hasil and id_uji="'.$id.'"')->row_array();
+    }
+
+    public function jmlHasil($id)
+    {
+        return $this->db->query('SELECT COUNT(data_testing_user.id_testing) as hasil FROM data_testing_user join detail_pengujian_user where id_uji="'.$id.'"')->row_array();
+    }
+
     public function jmltraining()
     {
         $jml = $this->db->get('data_training')->num_rows();

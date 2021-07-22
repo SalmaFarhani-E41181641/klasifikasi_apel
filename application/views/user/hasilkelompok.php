@@ -117,6 +117,27 @@
           </tr>
         </tfoot>
       </table>
+
+      <div class="row">
+        <div style="border-color:green; color:black !important;" class="card-hasil mt-5 animate__animated animate__bounceIn col-md-6">
+          <span>Akurasi Berhasil:</span><br>
+          <span>
+            <?php
+            $hitung = $jmlberhasil['berhasil'] / $jmlhasil['hasil'] * 100;
+            echo $hitung . "%";
+            ?>
+          </span>
+        </div>
+        <div style="border-color:red; color:black !important;" class="card-hasil mt-5 animate__animated animate__bounceIn col-md-6">
+          <span>Akurasi Gagal:</span><br>
+          <span>
+            <?php
+            $hitung1 = $jmlgagal['gagal'] / $jmlhasil['hasil'] * 100;
+            echo $hitung1 . "%";
+            ?>
+          </span>
+        </div>
+      </div>
     </div>
     <!-- /.card-body -->
   </div>

@@ -54,10 +54,11 @@ class Klasifikasi extends CI_Controller
     {
         $data['judul'] = "Hasil Klasifikasi (Data Kelompok)";
         $data['jumlah_training'] = $this->m_user->jmltraining();
-        $data['jumlah_testing'] = $this->m_user->jmltesting();
         $data['jumlah_kelas'] = $this->m_user->jmlkelas();
-        $data['jumlah_uji'] = $this->m_user->jmluji();
         $data['testing'] = $this->m_user->AllTesting($id_uji);
+        $data['jmlhasil'] = $this->m_user->jmlHasil($id_uji);
+        $data['jmlberhasil'] = $this->m_user->jmlBerhasil($id_uji);
+        $data['jmlgagal'] = $this->m_user->jmlGagal($id_uji);
         $this->load->view('user/header', $data);
         $this->load->view('user/navbar');
         $this->load->view('user/hasilkelompok', $data);
@@ -255,7 +256,7 @@ class Klasifikasi extends CI_Controller
         // hingga mungkin 1e-4 atau (0.0001) atau lebih.
         $alphatol = array_key_exists('alphatol', $options) ? $options['alphatol'] : 1e-7;
         // jumlah maksimum iterasi
-        $maxiter = array_key_exists('maxiter', $options) ? $options['maxiter'] : 10;
+        $maxiter = array_key_exists('maxiter', $options) ? $options['maxiter'] : 3000;
         // Sebanyak apa terjadi perulangan sampai berhenti pada angka yang telah ditentukan
         $numpasses = array_key_exists('numpasses', $options) ? $options['numpasses'] : 20;
 
