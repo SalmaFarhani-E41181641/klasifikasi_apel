@@ -20,6 +20,11 @@ class M_user extends CI_Model
         return $this->db;
     }
 
+    public function allTesting($id)
+    {
+        return $this->db->query('SELECT * FROM detail_pengujian_user join data_testing_user where detail_pengujian_user.id_testing= data_testing_user.id_testing and detail_pengujian_user.id_uji="'. $id.'"')->result();
+    }
+
     public function jmltraining()
     {
         $jml = $this->db->get('data_training')->num_rows();

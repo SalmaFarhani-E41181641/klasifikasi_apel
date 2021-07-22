@@ -22,7 +22,8 @@
     <h3 class="title text-center">KLASIFIKASI KELOMPOK</h3>
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
     <img src="<?= base_url('assets/user/') ?>svg/undraw_Web_search_re_efla.svg" class="service-img pb-4" style="width:20% !important;" alt=""><br>
-    <a href="<?= base_url('Klasifikasi/dataset') ?>" target="_blank" class="btn btn-primary text-white" name="button">Unduh Data Uji</a>
+    <a href="<?= base_url('Klasifikasi/dataset') ?>" target="_blank" class="btn btn-primary text-white mr-3" name="button">Unduh Data Uji</a>
+    <a href="<?= base_url('template') ?>" target="_blank" class="btn btn-primary text-white" name="button">Unduh Template</a>
     <div class="row pt-4">
       <div class="col-md-6">
         <!-- Info Boxes Style 2 -->

@@ -21,7 +21,6 @@
   <div class="container text-center">
     <h3 class="title text-center">KLASIFIKASI KELOMPOK</h3>
     <img src="<?= base_url('assets/user/') ?>svg/undraw_Web_search_re_efla.svg" class="service-img pb-4" style="width:20% !important;" alt=""><br>
-    <a href="<?= base_url('Klasifikasi/dataset') ?>" target="_blank" class="btn btn-primary text-white" name="button">Unduh Data Uji</a>
     <div class="row pt-4">
       <div class="col-md-6">
         <!-- Info Boxes Style 2 -->
@@ -44,38 +43,37 @@
     <div class="card-body">
       <table id="test" class="table table-bordered table-striped">
         <thead>
-            <tr class="text-center">
-              <th>No</th>
-              <th>Kelas</th>
-              <th>Mean_H</th>
-              <th>Mean_S</th>
-              <th>Mean_I</th>
-              <th>Skewness_H</th>
-              <th>Skewness_S</th>
-              <th>Skewness_I</th>
-              <th>Kurtosis_H</th>
-              <th>Kurtosis_S</th>
-              <th>Kurtosis_I</th>
-              <th>Data Hasil</th>
-            </tr>
+          <tr class="text-center">
+            <th>No</th>
+            <th>Kelas Asli</th>
+            <th>Kelas Hasil</th>
+            <th>Mean_H</th>
+            <th>Mean_S</th>
+            <th>Mean_I</th>
+            <th>Skewness_H</th>
+            <th>Skewness_S</th>
+            <th>Skewness_I</th>
+            <th>Kurtosis_H</th>
+            <th>Kurtosis_S</th>
+            <th>Kurtosis_I</th>
+          </tr>
         </thead>
         <tbody>
           <?php $no = 1; ?>
-          <?php 
-          $testing = $this->db->query("select * from data_testing_user")->result();
-
+          <?php
           foreach ($testing as $p) :
-              $id = $p->id_testing;
-              $kelas = $p->Kelas_Apel;
-              $mean_h = $p->Mean_H;
-              $mean_s = $p->Mean_S;
-              $mean_i = $p->Mean_I;
-              $skewness_h = $p->Skewness_H;
-              $skewness_s = $p->Skewness_S;
-              $skewness_i = $p->Skewness_I;
-              $kurtosis_h = $p->Kurtosis_H;
-              $kurtosis_s = $p->Kurtosis_S;
-              $kurtosis_i = $p->Kurtosis_I;
+            $id = $p->id_testing;
+            $kelas = $p->Kelas_Apel;
+            $hasil = $p->Kelas_Hasil;
+            $mean_h = $p->Mean_H;
+            $mean_s = $p->Mean_S;
+            $mean_i = $p->Mean_I;
+            $skewness_h = $p->Skewness_H;
+            $skewness_s = $p->Skewness_S;
+            $skewness_i = $p->Skewness_I;
+            $kurtosis_h = $p->Kurtosis_H;
+            $kurtosis_s = $p->Kurtosis_S;
+            $kurtosis_i = $p->Kurtosis_I;
           ?>
             <tr>
               <td class="text-center" width="100px"><?= $no; ?></td>
@@ -84,6 +82,11 @@
                                         } else {
                                           echo 'info';
                                         } ?>"><b><?= $kelas ?></b></td>
+              <td class="text-center bg-<?php if ($hasil == $kelas) {
+                                          echo 'success';
+                                        } else {
+                                          echo 'danger';
+                                        } ?>"><b><?= $hasil ?></b></td>
               <td><?= number_format($mean_h, 3, '.', '.'); ?></td>
               <td><?= number_format($mean_s, 3, '.', '.'); ?></td>
               <td><?= number_format($mean_i, 3, '.', '.'); ?></td>
@@ -93,11 +96,6 @@
               <td><?= number_format($kurtosis_h, 3, '.', '.'); ?></td>
               <td><?= number_format($kurtosis_s, 3, '.', '.'); ?></td>
               <td><?= number_format($kurtosis_i, 3, '.', '.'); ?></td>
-              <td class="text-center bg-<?php if ($kelas == 'Manalagi') {
-                                          echo 'warning';
-                                        } else {
-                                          echo 'info';
-                                        } ?>"><b><?= $kelas ?></b></td>
             </tr>
             <?php $no++ ?>
           <?php endforeach; ?>

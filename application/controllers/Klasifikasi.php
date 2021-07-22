@@ -50,13 +50,14 @@ class Klasifikasi extends CI_Controller
         $this->load->view('user/footer');
     }
 
-    public function hasilkelompok()
+    public function hasilkelompok($id_uji)
     {
         $data['judul'] = "Hasil Klasifikasi (Data Kelompok)";
         $data['jumlah_training'] = $this->m_user->jmltraining();
         $data['jumlah_testing'] = $this->m_user->jmltesting();
         $data['jumlah_kelas'] = $this->m_user->jmlkelas();
         $data['jumlah_uji'] = $this->m_user->jmluji();
+        $data['testing'] = $this->m_user->AllTesting($id_uji);
         $this->load->view('user/header', $data);
         $this->load->view('user/navbar');
         $this->load->view('user/hasilkelompok', $data);
@@ -66,6 +67,11 @@ class Klasifikasi extends CI_Controller
     public function dataset()
     {
         force_download('assets/dist/dataset/Testing.xlsx', NULL);
+    }
+
+    public function template()
+    {
+        force_download('assets/dist/dataset/Template.xlsx', NULL);
     }
 
     public function batch()
@@ -124,106 +130,14 @@ class Klasifikasi extends CI_Controller
                         $resultData[$index]['Kurtosis_S'] = $value['J'];
                         $resultData[$index]['Kurtosis_I'] = $value['K'];
                         // }
+
+                        $resultData[$index]['Kelas_Hasil'] = $this->ujikelompok($value['C'], $value['D'], $value['E'], $value['F'], $value['G'], $value['H'], $value['I'], $value['J'], $value['K']);
+
                     }
                     $index++;
                 }
-
-                unlink('./assets/excel/' . $data['file_name']);
-
-                if (count($resultData) != 0) {
-                    // $id_uji = substr(str_shuffle('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 10);
-
-                    // $pengujian = [
-                    //     'id_uji' => $id_uji,
-                    //     'id_user' => "user",
-                    //     'jenis_pengujian' => "kelompok",
-                    //     'tanggal_uji' => date('Y-m-d')
-                    // ];
-
-                    // $this->db->insert('pengujian_user', $pengujian);
-
-                    // $detail = [
-                    //     'id_uji' => $id_uji,
-                    //     'id_testing' => $id
-                    // ];
-
-                    $result = $this->m_testing->insert_batch_user('data_testing_user',$resultData);
-                    if ($result > 0) {
-                        $this->session->set_flashdata('message', 'save');
-                        redirect('Klasifikasi/hasilkelompok');
-                    }
-                } else {
-                    $this->session->set_flashdata('message', 'duplikasi');
-                    redirect('Klasifikasi/kelompok');
-                }
-            }
-        }
-    }
-
-    public function batch2()
-    {
-        // var_dump($_FILES);die;
-        $this->form_validation->set_rules('excel', 'Excel', 'trim|required');
-
-        if ($_FILES['excel']['name'] == '') {
-            $this->session->set_flashdata('message', 'kosong');
-            redirect('Klasifikasi/kelompok');
-        } else {
-            $config['upload_path'] = './assets/excel/';
-            $config['allowed_types'] = 'xls|xlsx';
-
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload('excel')) {
-                // $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('message', 'gagal_upload');
-                redirect('Klasifikasi/kelompok');
-            } else {
-                $data = $this->upload->data();
-
-                error_reporting(E_ALL);
-                date_default_timezone_set('Asia/Jakarta');
-
-                require 'vendor/autoload.php';
-
-                include './assets/plugins/phpoffice/phpspreadsheet/src/PhpSpreadsheet/IOFactory.php';
-
-                $inputFileName = './assets/excel/' . $data['file_name'];
-                // $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-
-                $spreadsheet = \PhpOffice\Phpspreadsheet\IOFactory::load($inputFileName);
-                $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
-
-                $index = 0;
-                // var_dump($sheetData);die;
-                foreach ($sheetData as $key => $value) {
-                    $id = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 1, 6);
-                    if ($key > 1) {
-                        // $id = md5(DATE('ymdhms') . rand());
-                        // $check = $this->m_testing->check_nama($value['C']);
-
-                        // if ($check != 1) {
-                        // $resultData[$index]['Id'] = $value['A'];
-                        $resultData[$index]['id_testing'] = $id;
-                        $resultData[$index]['Kelas_Apel'] = ucwords($value['B']);
-                        $resultData[$index]['Mean_H'] = $value['C'];
-                        $resultData[$index]['Mean_S'] = $value['D'];
-                        $resultData[$index]['Mean_I'] = $value['E'];
-                        $resultData[$index]['Skewness_H'] = $value['F'];
-                        $resultData[$index]['Skewness_S'] = $value['G'];
-                        $resultData[$index]['Skewness_I'] = $value['H'];
-                        $resultData[$index]['Kurtosis_H'] = $value['I'];
-                        $resultData[$index]['Kurtosis_S'] = $value['J'];
-                        $resultData[$index]['Kurtosis_I'] = $value['K'];
-                        // }
-
-                        $resulData[$index]['Kelas_Hasil'] = $this->ujikelompok($value['C'],$value['D'],$value['E'],$value['F'],$value['G'],$value['H'],$value['I'],$value['J'],$value['K']);
-                    }
-                    $index++;
-                }
-
-                unlink('./assets/excel/' . $data['file_name']);
-                // var_dump($resultData);die;
+                // var_dump($resultData);
+                // die;
 
                 if (count($resultData) != 0) {
                     $id_uji = substr(str_shuffle('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 10);
@@ -235,9 +149,8 @@ class Klasifikasi extends CI_Controller
                         'tanggal_uji' => date('Y-m-d')
                     ];
 
-                    // $this->db->insert('pengujian_user', $pengujian);
                     $arrayy = [];
-                    foreach ($resultData as $rd){
+                    foreach ($resultData as $rd) {
                         // var_dump($rd['id_testing']);die;
                         $detail = [
                             'id_uji' => $id_uji,
@@ -245,10 +158,16 @@ class Klasifikasi extends CI_Controller
                         ];
                         array_push($arrayy, $detail);
                     }
-                    $result = $this->m_testing->insert_batch_user('data_testing_user',$resultData);
+                    $id = $id_uji;
+                    $this->db->insert('pengujian_user', $pengujian);
+                    $result = $this->m_testing->insert_batch_user('data_testing_user', $resultData);
+                    $result = $this->m_testing->insert_batch_user('detail_pengujian_user', $arrayy);
                     if ($result > 0) {
-                        $this->session->set_flashdata('message', 'save');
-                        redirect('Klasifikasi/hasilkelompok', $id_uji);
+                        unlink('./assets/excel/' . $data['file_name']);
+                        $this->session->set_flashdata('message', 'pengujian');
+                        redirect('Klasifikasi/hasilkelompok/'. $id);
+                    }else{
+
                     }
                 } else {
                     $this->session->set_flashdata('message', 'duplikasi');

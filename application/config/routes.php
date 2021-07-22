@@ -60,6 +60,7 @@ $route['guide'] = 'Guide';
 $route['profile'] = 'Profile';
 $route['about'] = 'About';
 $route['dataset'] = 'Guide/dataset';
+$route['template'] = 'Klasifikasi/template';
 // $route['result/(:any)'] = 'Classified/individu/$1';
 $route['manage'] = 'Manage';
 $route['classified'] = 'Classified';
