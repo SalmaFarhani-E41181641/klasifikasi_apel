@@ -121,7 +121,12 @@
                   icon: 'error',
                   title: 'Gagal mengaktivasi akun!',
               });
-          } else if (flashData == 'blocked') {
+          } else if (flashData == 'gagalklas') {
+              Toast.fire({
+                  icon: 'error',
+                  title: 'Klasifikasi gagal!',
+              });
+          }else if (flashData == 'blocked') {
               Toast.fire({
                   icon: 'info',
                   title: 'Akun anda diblokir untuk sementara, anda terdeteksi melakukan hal mencurigakan!',
