@@ -19,6 +19,7 @@ class Klasifikasi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user', 'm_user');
+        $this->load->model('M_testing', 'm_testing');
         $this->load->helper('number_helper');
     }
 
@@ -141,5 +142,4 @@ class Klasifikasi extends CI_Controller
             }
         }
     }
-
 }

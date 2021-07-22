@@ -7,7 +7,6 @@ class Manage extends CI_Controller
         $this->load->model('M_manage', 'manage');
         $this->load->model('M_user', 'user');
         user_logged_in();
-        cekuser();
     }
 
     public function index()

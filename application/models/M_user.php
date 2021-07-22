@@ -5,7 +5,7 @@ class M_user extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('user');
-        $this->db->join('role', 'role.id_role=user.id_role');
+        // $this->db->join('role', 'role.id_role=user.id_role');
         $this->db->where('email', $email);
         $query = $this->db->get()->row_array();
         return $query;

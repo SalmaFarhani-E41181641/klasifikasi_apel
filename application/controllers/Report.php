@@ -8,7 +8,6 @@ class Report extends CI_Controller
         parent::__construct();
         $this->load->model('M_report', 'report');
         user_logged_in();
-        cekuser();
     }
 
     public function index()
@@ -28,12 +27,12 @@ class Report extends CI_Controller
         $this->load->view('template/v_footer');
     }
 
-    public function kosongkan()
-    {
-        $this->db->query("ALTER TABLE klasifikasi.detail_pengujian DROP CONSTRAINT detail_pengujian_ibfk_3");
-        $this->db->query("TRUNCATE TABLE pengujian");
-        $this->db->query("ALTER TABLE klasifikasi.detail_pengujian ADD CONSTRAINT detail_pengujian_ibfk_3 FOREIGN KEY(id_uji) REFERENCES klasifikasi.pengujian (id_uji)");
-        $this->session->set_flashdata('message', 'truncate');
-        redirect('report');
-    }
+    // public function kosongkan()
+    // {
+    //     $this->db->query("ALTER TABLE klasifikasi.detail_pengujian DROP CONSTRAINT detail_pengujian_ibfk_3");
+    //     $this->db->query("TRUNCATE TABLE pengujian");
+    //     $this->db->query("ALTER TABLE klasifikasi.detail_pengujian ADD CONSTRAINT detail_pengujian_ibfk_3 FOREIGN KEY(id_uji) REFERENCES klasifikasi.pengujian (id_uji)");
+    //     $this->session->set_flashdata('message', 'truncate');
+    //     redirect('report');
+    // }
 }

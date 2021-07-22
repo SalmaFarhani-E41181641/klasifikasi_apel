@@ -5,7 +5,7 @@ class M_manage extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('user');
-        $this->db->where('id_role=2');
+        // $this->db->where('id_role=2');
         $this->db->order_by('id_user', 'DESC');
         return $this->db->get()->result_array();
     }

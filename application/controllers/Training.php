@@ -8,7 +8,6 @@ class Training extends CI_Controller
         parent::__construct();
         $this->load->model('M_training', 'm_training');
         user_logged_in();
-        cekuser();
     }
 
     public function index()
@@ -106,45 +105,52 @@ class Training extends CI_Controller
     public function export()
     {
         error_reporting(E_ALL);
-        require '/vendor/autoload.php';
+        // require 'vendor/autoload.php';
+        include './assets/plugins/phpoffice/phpspreadsheet/src/PhpSpreadsheet/PhpSpreadsheet.php';
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $data = $this->m_training->select_all();
-        $sheet = $spreadsheet->getActiveSheet();
+        $check = $this->db->get('data_training');
+        if ($check->num_rows() != 0) {
+            $sheet = $spreadsheet->getActiveSheet();
 
-        $rowCount = 1;
-        $sheet->setCellValue('A' . $rowCount, "id_training");
-        $sheet->setCellValue('B' . $rowCount, "Kelas_Apel");
-        $sheet->setCellValue('D' . $rowCount, "Mean_H");
-        $sheet->setCellValue('E' . $rowCount, "Mean_S");
-        $sheet->setCellValue('F' . $rowCount, "Mean_I");
-        $sheet->setCellValue('G' . $rowCount, "Skewness_H");
-        $sheet->setCellValue('H' . $rowCount, "Skewness_S");
-        $sheet->setCellValue('I' . $rowCount, "Skewness_I");
-        $sheet->setCellValue('J' . $rowCount, "Kurtosis_H");
-        $sheet->setCellValue('K' . $rowCount, "Kurtosis_S");
-        $sheet->setCellValue('L' . $rowCount, "Kurtosis_I");
-        $rowCount++;
-
-        foreach ($data as $value) {
-            $sheet->setCellValue('A' . $rowCount, $value->id_training);
-            $sheet->setCellValue('B' . $rowCount, $value->Kelas_Apel);
-            $sheet->setCellValue('D' . $rowCount, $value->Mean_H);
-            $sheet->setCellValue('E' . $rowCount, $value->Mean_S);
-            $sheet->setCellValue('F' . $rowCount, $value->Mean_I);
-            $sheet->setCellValue('G' . $rowCount, $value->Skewness_H);
-            $sheet->setCellValue('H' . $rowCount, $value->Skewness_S);
-            $sheet->setCellValue('I' . $rowCount, $value->Skewness_I);
-            $sheet->setCellValue('J' . $rowCount, $value->Kurtosis_H);
-            $sheet->setCellValue('K' . $rowCount, $value->Kurtosis_S);
-            $sheet->setCellValue('L' . $rowCount, $value->Kurtosis_I);
+            $rowCount = 1;
+            $sheet->setCellValue('A' . $rowCount, "id_training");
+            $sheet->setCellValue('B' . $rowCount, "Kelas_Apel");
+            $sheet->setCellValue('D' . $rowCount, "Mean_H");
+            $sheet->setCellValue('E' . $rowCount, "Mean_S");
+            $sheet->setCellValue('F' . $rowCount, "Mean_I");
+            $sheet->setCellValue('G' . $rowCount, "Skewness_H");
+            $sheet->setCellValue('H' . $rowCount, "Skewness_S");
+            $sheet->setCellValue('I' . $rowCount, "Skewness_I");
+            $sheet->setCellValue('J' . $rowCount, "Kurtosis_H");
+            $sheet->setCellValue('K' . $rowCount, "Kurtosis_S");
+            $sheet->setCellValue('L' . $rowCount, "Kurtosis_I");
             $rowCount++;
+
+            foreach ($data as $value) {
+                $sheet->setCellValue('A' . $rowCount, $value->id_training);
+                $sheet->setCellValue('B' . $rowCount, $value->Kelas_Apel);
+                $sheet->setCellValue('D' . $rowCount, $value->Mean_H);
+                $sheet->setCellValue('E' . $rowCount, $value->Mean_S);
+                $sheet->setCellValue('F' . $rowCount, $value->Mean_I);
+                $sheet->setCellValue('G' . $rowCount, $value->Skewness_H);
+                $sheet->setCellValue('H' . $rowCount, $value->Skewness_S);
+                $sheet->setCellValue('I' . $rowCount, $value->Skewness_I);
+                $sheet->setCellValue('J' . $rowCount, $value->Kurtosis_H);
+                $sheet->setCellValue('K' . $rowCount, $value->Kurtosis_S);
+                $sheet->setCellValue('L' . $rowCount, $value->Kurtosis_I);
+                $rowCount++;
+            }
+
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);;
+            $writer->save('./assets/excel/Data Training.xlsx');
+
+            $this->load->helper('download');
+            force_download('./assets/excel/Data Training.xlsx', NULL);
+        } else{
+            $this->session->set_flashdata('message', 'gagal_export');
+            redirect('training');
         }
-
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);;
-        $writer->save('./assets/excel/Data Training.xlsx');
-
-        $this->load->helper('download');
-        force_download('./assets/excel/Data Training.xlsx', NULL);
     }
 
     public function batch()
@@ -181,6 +187,9 @@ class Training extends CI_Controller
                 $index = 0;
                 foreach ($sheetData as $key => $value) {
                     if ($key != 1) {
+                        // $check = $this->m_training->check_data($value['C']);
+
+                        // if ($check == 1) {
                         $resultData[$index]['Kelas_Apel'] = ucwords($value['B']);
                         $resultData[$index]['Mean_H'] = $value['C'];
                         $resultData[$index]['Mean_S'] = $value['D'];
@@ -191,6 +200,7 @@ class Training extends CI_Controller
                         $resultData[$index]['Kurtosis_H'] = $value['I'];
                         $resultData[$index]['Kurtosis_S'] = $value['J'];
                         $resultData[$index]['Kurtosis_I'] = $value['K'];
+                        // }
                     }
                     $index++;
                 }

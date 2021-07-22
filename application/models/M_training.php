@@ -66,7 +66,6 @@ class M_training extends CI_Model
     {
         $this->db->where('Mean_H', $data);
         $data = $this->db->get('data_training');
-
         return $data->num_rows();
     }
 

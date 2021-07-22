@@ -82,37 +82,37 @@
                                 <?php endforeach; ?>
                             </tbody>
                             <?php
-                            $jenis_uji = $this->uri->segment('2');
-                            $ambil = $this->db->query("SELECT * FROM pengujian WHERE jenis_pengujian = '$jenis_uji'")->result_array();
-                            $BN = $SL = $BR = $SH = $KS = 0;
+                            // $jenis_uji = $this->uri->segment('2');
+                            // $ambil = $this->db->query("SELECT * FROM pengujian WHERE jenis_pengujian = '$jenis_uji'")->result_array();
+                            // $BN = $SL = $BR = $SH = $KS = 0;
 
-                            foreach ($ambil as $d) {
-                                if ($d['kelas_asli'] == "Manalagi" && $d['kelas_hasil'] == "-1") {
-                                    $BN++;
-                                } elseif ($d['kelas_asli'] == "Manalagi" && $d['kelas_hasil'] == "1") {
-                                    $SL++;
-                                } elseif ($d['kelas_asli'] == "Green Smith" && $d['kelas_hasil'] == "1") {
-                                    $BR++;
-                                } elseif ($d['kelas_asli'] == "Green Smith" && $d['kelas_hasil'] == "-1") {
-                                    $SH++;
-                                } else {
-                                    $KS++;
-                                }
-                            }
+                            // foreach ($ambil as $d) {
+                            //     if ($d['kelas_asli'] == "Manalagi" && $d['kelas_hasil'] == "-1") {
+                            //         $BN++;
+                            //     } elseif ($d['kelas_asli'] == "Manalagi" && $d['kelas_hasil'] == "1") {
+                            //         $SL++;
+                            //     } elseif ($d['kelas_asli'] == "Green Smith" && $d['kelas_hasil'] == "1") {
+                            //         $BR++;
+                            //     } elseif ($d['kelas_asli'] == "Green Smith" && $d['kelas_hasil'] == "-1") {
+                            //         $SH++;
+                            //     } else {
+                            //         $KS++;
+                            //     }
+                            // }
 
-                            foreach ($ambil as $s) {
-                                if ($s['kelas_asli'] == "-1" && $s['kelas_hasil'] == "-1") {
-                                    $BN++; // Benar
-                                } elseif ($s['kelas_asli'] == "-1" && $s['kelas_hasil'] == "1") {
-                                    $SL++; // Salah
-                                } elseif ($s['kelas_asli'] == "1" && $s['kelas_hasil'] == "1") {
-                                    $BR++; // Benar
-                                } elseif ($s['kelas_asli'] == "1" && $s['kelas_hasil'] == "-1") {
-                                    $SH++; // Salah
-                                } else {
-                                    $KS++; // Jika Kosong
-                                }
-                            }
+                            // foreach ($ambil as $s) {
+                            //     if ($s['kelas_asli'] == "-1" && $s['kelas_hasil'] == "-1") {
+                            //         $BN++; // Benar
+                            //     } elseif ($s['kelas_asli'] == "-1" && $s['kelas_hasil'] == "1") {
+                            //         $SL++; // Salah
+                            //     } elseif ($s['kelas_asli'] == "1" && $s['kelas_hasil'] == "1") {
+                            //         $BR++; // Benar
+                            //     } elseif ($s['kelas_asli'] == "1" && $s['kelas_hasil'] == "-1") {
+                            //         $SH++; // Salah
+                            //     } else {
+                            //         $KS++; // Jika Kosong
+                            //     }
+                            // }
                             ?>
                             <tfoot>
                                 <tr class="text-center">
@@ -123,7 +123,7 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="container akurasi mt-3">
+                    <!-- <div class="container akurasi mt-3">
                         <div class="card">
                             <table class="table table-striped">
                                 <thead class="thead-dark">
@@ -153,7 +153,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

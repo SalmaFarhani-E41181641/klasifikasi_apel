@@ -91,7 +91,7 @@
                                         <td class="text-center bg-<?php if ($kelas == 'Manalagi') {
                                                                         echo 'warning';
                                                                     } else {
-                                                                        echo 'info';
+                                                                        echo 'teal';
                                                                     } ?>"><b><?= $kelas ?></b></td>
                                         <td><?= number_format($mean_h, 3, '.', '.'); ?></td>
                                         <td><?= number_format($mean_s, 3, '.', '.'); ?></td>
@@ -151,7 +151,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?php echo base_url() . 'Train/insert' ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() . 'Test/insert' ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="kelas">Kelas Data Sampel</label>

@@ -111,7 +111,7 @@ class Test extends CI_Controller
         // include_once './assets/plugins/PhpSpreadsheet/Spreadsheet.php';
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $data = $this->m_testing->select_all();
-        $check = $this->db->get('data_training');
+        $check = $this->db->get('data_testing');
         if ($check->num_rows() != 0) {
             $sheet = $spreadsheet->getActiveSheet();
 
@@ -153,7 +153,7 @@ class Test extends CI_Controller
             force_download('./assets/excel/Data Testing.xlsx', NULL);
         } else {
             $this->session->set_flashdata('message', 'gagal_export');
-            redirect('training');
+            redirect('testing');
         }
     }
 
@@ -194,20 +194,20 @@ class Test extends CI_Controller
                 foreach ($sheetData as $key => $value) {
                     if ($key != 1) {
                         // $id = md5(DATE('ymdhms') . rand());
-                        // $check = $this->m_testing->check_nama($value['C']);
+                        // $check = $this->m_testing->check_data($value['C']);
 
-                        // if ($check != 1) {
+                        // if ($check == 1) {
                         // $resultData[$index]['Id'] = $value['A'];
-                        $resultData[$index]['Kelas_Apel'] = ucwords($value['B']);
-                        $resultData[$index]['Mean_H'] = $value['C'];
-                        $resultData[$index]['Mean_S'] = $value['D'];
-                        $resultData[$index]['Mean_I'] = $value['E'];
-                        $resultData[$index]['Skewness_H'] = $value['F'];
-                        $resultData[$index]['Skewness_S'] = $value['G'];
-                        $resultData[$index]['Skewness_I'] = $value['H'];
-                        $resultData[$index]['Kurtosis_H'] = $value['I'];
-                        $resultData[$index]['Kurtosis_S'] = $value['J'];
-                        $resultData[$index]['Kurtosis_I'] = $value['K'];
+                            $resultData[$index]['Kelas_Apel'] = ucwords($value['B']);
+                            $resultData[$index]['Mean_H'] = $value['C'];
+                            $resultData[$index]['Mean_S'] = $value['D'];
+                            $resultData[$index]['Mean_I'] = $value['E'];
+                            $resultData[$index]['Skewness_H'] = $value['F'];
+                            $resultData[$index]['Skewness_S'] = $value['G'];
+                            $resultData[$index]['Skewness_I'] = $value['H'];
+                            $resultData[$index]['Kurtosis_H'] = $value['I'];
+                            $resultData[$index]['Kurtosis_S'] = $value['J'];
+                            $resultData[$index]['Kurtosis_I'] = $value['K'];
                         // }
                     }
                     $index++;

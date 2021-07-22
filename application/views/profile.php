@@ -43,7 +43,7 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <b>Hak akses</b> <span class="badge badge-danger text-bold float-right"><?= $user['role'] ?></span>
+                                    <b>Hak akses</b> <span class="badge badge-danger text-bold float-right">Admin</span>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Terdaftar</b> <span class="badge bg-primary text-bold float-right"><?= $tgl; ?></span>

@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="<?= base_url() ?>" class="brand-link">
         <img src="<?= base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">SiCerdas</span>
+        <span class="brand-text font-weight-light">SiKapel</span>
     </a>
 
     <!-- Sidebar -->
@@ -39,7 +39,7 @@
         with font-awesome or any other icon font library -->
                 <li class="nav-header">Beranda</li>
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>" class="nav-link <?php if ('home' == $link) {
+                    <a href="<?= base_url('home'); ?>" class="nav-link <?php if ('home' == $link) {
                                                                         echo 'active';
                                                                     } ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>

@@ -28,8 +28,8 @@
                     <div class="card-header bg-navy">
                         <h3 class="card-title text-bold"><?= $judul; ?></h3>
                         <div class="card-tools">
-                            <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDelete">
-                                <i class="fas fa-exclamation-triangle"></i> Kosongkan Uji</a>
+                            <!-- <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDelete">
+                                <i class="fas fa-exclamation-triangle"></i> Kosongkan Uji</a> -->
                         </div>
                     </div>
                     <!-- /.card-header -->
