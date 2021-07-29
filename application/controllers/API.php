@@ -188,7 +188,7 @@ class API extends CI_Controller
         // hingga mungkin 1e-4 atau (0.0001) atau lebih.
         $alphatol = array_key_exists('alphatol', $options) ? $options['alphatol'] : 1e-7;
         // jumlah maksimum iterasi
-        $maxiter = array_key_exists('maxiter', $options) ? $options['maxiter'] : 10;
+        $maxiter = array_key_exists('maxiter', $options) ? $options['maxiter'] : 5000;
         // Sebanyak apa terjadi perulangan sampai berhenti pada angka yang telah ditentukan
         $numpasses = array_key_exists('numpasses', $options) ? $options['numpasses'] : 20;
 
